@@ -24,3 +24,9 @@
   for = "index.xml"
   [headers.values]
     Content-Type = "application/rss+xml"
+
+[[redirects]]
+  from = "/static/html/cv_Peterson.html"
+  to = "/cv"
+  status = 301
+  force = true
