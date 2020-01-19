@@ -26,7 +26,13 @@
     Content-Type = "application/rss+xml"
 
 [[redirects]]
-  from = "/static/html/cv_Peterson.html"
+  from = "https://htmlpreview.github.io/?https://github.com/jacpete/Resume_CV/blob/master/cv_Peterson.html"
   to = "/cv"
   status = 301
   force = true
+  
+  [[redirects]]
+    from = "https://htmlpreview.github.io/?https://github.com/jacpete/Resume_CV/blob/master/resume.html"
+    to = "/resume"
+    status = 200
+    force = true
