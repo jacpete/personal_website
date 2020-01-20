@@ -27,19 +27,12 @@
 
 [[redirects]]
   from = "/cv"
-  to = "https://htmlpreview.github.io/?https://github.com/jacpete/Resume_CV/blob/master/cv_Peterson.html"
-  status = 301
+  to = "/html/cv_Peterson.html"
+  status = 200
   force = true
 
 [[redirects]]
   from = "/resume"
-  to = "https://htmlpreview.github.io/?https://github.com/jacpete/Resume_CV/blob/master/resume.html"
-#  to = "https://htmlpreview.github.io/?https://github.com/jacpete/Resume_CV/blob/master/cv_Peterson.html"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/res"
 #  to = "https://htmlpreview.github.io/?https://github.com/jacpete/Resume_CV/blob/master/resume.html"
   to = "/html/resume.html"
   status = 200
