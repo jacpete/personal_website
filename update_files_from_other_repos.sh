@@ -28,9 +28,11 @@ update_local_repo () {
   cd ${githubRepoLoc}
   if [ ! -d $1 ] #if repo directory doesn't exist
   then #create repo
+    echo "Cloning ${1} repo to ${githubRepoLoc}"
     setup_local_repo "$1"
   else #update repo from github
     cd $1
+    echo "Updating ${1} repo"
     git pull 
     cd ${githubRepoLoc}
   fi
@@ -91,9 +93,11 @@ do
     # if [[ $? != "0" ]]
     if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different
     then
+      echo "Updating ${filename} in website repo"
       cp "${oriFile}" "${websiteFileLoc}"
     fi
   else
+    echo "Adding ${filename} to website repo"
     cp "${oriFile}" "${websiteFileLoc}"
   fi
 done
@@ -105,9 +109,12 @@ cd "${githubRepoLoc}/${websiteRepo}"
 git diff --exit-code #Are there differences in the website repo compared to the last pull from master?
 if [[ $? != "0" ]]
 then
+  echo "Updating Website Repo"
   git add --all
   git commit -am "Updated static files from other repos with update_file_from_other_repos.sh script: $(date +'%Y-%m-%d   %T')"
   git push
+else
+  echo "All files up to date"
 fi
 
 # git diff-index --quiet HEAD -- #Check for updates to repository
