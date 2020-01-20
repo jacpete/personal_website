@@ -19,25 +19,30 @@ csvName="update_files_from_other_repos.csv"
 
 #$1: current repo name
 setup_local_repo () {
-  cd ${githubRepoLoc}
   currentRepoSSH="git@github.com:jacpete/$1.git"
   git clone ${currentRepoSSH} #clone the repo
 }
 
 #$1: current repo name
-local_repo_exist () {
+update_local_repo () {
   cd ${githubRepoLoc}
   if [ ! -d $1 ] 
   then
     setup_local_repo "$1"
+  else
+    cd $1
+    git pull
+    cd ${githubRepoLoc}
   fi
 }
 
-local_repo_exist ${websiteRepo}
 
 ########################################
 #### General Script ####################
 ########################################
+
+#Update Website Repo
+update_local_repo ${websiteRepo}
 
 
 #### Absolute filepath of csvName
@@ -60,7 +65,7 @@ uniqRepo=($(printf '%s\n' "${repoList[@]}" | sort | uniq))
 #### Update needed repos
 for i in ${!uniqRepo[*]}
 do
-  local_repo_exist ${uniqRepo[i]}
+  update_local_repo ${uniqRepo[i]}
 done
 
 
