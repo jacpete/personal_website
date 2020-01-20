@@ -114,7 +114,7 @@ then
   git commit -am "Updated static files from other repos with update_file_from_other_repos.sh script: $(date +'%Y-%m-%d   %T')"
   git push
 else
-  echo "All files up to date"
+  echo "All files up to date in website repo"
 fi
 
 # git diff-index --quiet HEAD -- #Check for updates to repository
