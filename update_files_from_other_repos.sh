@@ -26,15 +26,17 @@ setup_local_repo () {
 #$1: current repo name
 update_local_repo () {
   cd ${githubRepoLoc}
-  if [ ! -d $1 ] 
-  then
+  if [ ! -d $1 ] #if repo directory doesn't exist
+  then #create repo
     setup_local_repo "$1"
-  else
+  else #update repo from github
     cd $1
-    git pull
+    git pull 
     cd ${githubRepoLoc}
   fi
 }
+
+
 
 
 ########################################
@@ -67,6 +69,53 @@ for i in ${!uniqRepo[*]}
 do
   update_local_repo ${uniqRepo[i]}
 done
+
+
+# printf '%s\n' "${oriFileLocList[@]}" 
+# printf '%s\n' "${websiteFileLocList[@]}" 
+
+#### Copy Files to the website directory
+for i in ${!oriFileLocList[*]}
+do
+  oriFile="${githubRepoLoc}/${repoList[i]}/${oriFileLocList[i]}"
+  # echo $oriFile
+  filename="${oriFile##*/}"
+  # echo $filename
+  websiteFileLoc="${githubRepoLoc}/${websiteRepo}/${websiteFileLocList[i]}"
+  # echo $websiteFileLoc
+  websiteFile="${websiteFileLoc}/${filename}"
+  # echo $websiteFile
+  if [ -f ${websiteFile} ] #if website file exists 
+  then
+    # diff -q ${oriFile} ${websiteFile} 1>/dev/null
+    # if [[ $? != "0" ]]
+    if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different
+    then
+      cp "${oriFile}" "${websiteFileLoc}"
+    fi
+  else
+    cp "${oriFile}" "${websiteFileLoc}"
+  fi
+done
+
+
+#### Update Website Repository
+cd "${githubRepoLoc}/${websiteRepo}"
+
+git diff --exit-code #Are there differences in the website repo compared to the last pull from master?
+if [[ $? != "0" ]]
+then
+  git add --all
+  git commit -am "Updated static files from other repos with update_file_from_other_repos.sh script: $(date +'%Y-%m-%d   %T')"
+  git push
+fi
+
+# git diff-index --quiet HEAD -- #Check for updates to repository
+# 
+# # if there are updates
+# git add --all
+# git commit -am "Updated static files from other repos with update_file_from_other_repos.sh script: $(date +'%Y-%m-%d   %T')"
+# git push
 
 
 
