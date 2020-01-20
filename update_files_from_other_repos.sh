@@ -1,5 +1,16 @@
 #!/bin/bash
 
+
+# A csv will hold specific file information. Each row dictates a particular file
+# to copy over. It will contian the following columns:
+#  * user - Github username for the repo (currently unused in script)
+#  * repo - What repo is the file from?
+#  * oriFileLoc - Relative file location for the file inside the repo directory
+#  * websiteFileLoc - Relative directory for the file inside the website repo
+
+
+
+
 ########################################
 #### Global Variables ##################
 ########################################
@@ -117,25 +128,3 @@ else
   echo "All files up to date in website repo"
 fi
 
-# git diff-index --quiet HEAD -- #Check for updates to repository
-# 
-# # if there are updates
-# git add --all
-# git commit -am "Updated static files from other repos with update_file_from_other_repos.sh script: $(date +'%Y-%m-%d   %T')"
-# git push
-
-
-
-  # [Global Params]
-  #   githubRepoLoc - Absoute path of repo folders
-  #   websiteRepo - Website repo name
-  # 
-  # 1. Get a list of unique repos from csv
-  #   1.1 For each repo do a git pull to update the files
-  # 
-  # 2. Start loop for each line in csv
-  #   2.1 Do a file copy with overwrite from oriFileLoc to websiteFileLoc
-  # 
-  # 3. Update Website Repo
-  #   3.1 Commit all changes with message "Automatic-Update-{date}"
-  #   3.2 Push the commit (Netlify should update automatically from here)
