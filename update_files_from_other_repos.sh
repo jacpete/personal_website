@@ -79,8 +79,8 @@ update_local_repo () {
     cd $1
     echo "Updating ${1} repo"
     git pull
-    cd ${githubRepoLoc}
   fi
+  cd ${githubRepoLoc}
 }
 
 
