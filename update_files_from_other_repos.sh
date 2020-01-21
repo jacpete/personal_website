@@ -126,26 +126,24 @@ done
 #### Copy Files to the website directory
 for i in ${!oriFileLocList[*]}
 do
-  oriFile="${githubRepoLoc}/${repoList[i]}/${oriFileLocList[i]}"
+  oriFile="${githubRepoLoc}/${repoList[i]}/${oriFileLocList[i]}" #original file pathname
   # echo $oriFile
-  filename="${oriFile##*/}"
+  filename="${oriFile##*/}" #file name
   # echo $filename
-  websiteFileLoc="${githubRepoLoc}/${websiteRepo}/${websiteFileLocList[i]}"
+  websiteFileLoc="${githubRepoLoc}/${websiteRepo}/${websiteFileLocList[i]}" #website filepath
   # echo $websiteFileLoc
-  websiteFile="${websiteFileLoc}/${filename}"
+  websiteFile="${websiteFileLoc}/${filename}" #website file pathname
   # echo $websiteFile
-  if [ -f ${websiteFile} ] #if website file exists
+  if [ -f ${websiteFile} ] #if file exists in website repo
   then
-    # diff -q ${oriFile} ${websiteFile} 1>/dev/null
-    # if [[ $? != "0" ]]
-    if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different
+    if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different in source and website repo
     then
       echo "Updating ${filename} in website repo"
-      cp "${oriFile}" "${websiteFileLoc}"
+      cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
     fi
   else
     echo "Adding ${filename} to website repo"
-    cp "${oriFile}" "${websiteFileLoc}"
+    cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
   fi
 done
 
