@@ -1,6 +1,27 @@
 #!/bin/bash
 
+########################################
+#### Author: Jacob Peterson
+#### Creation Date: 2020-01-19
+########################################
 
+
+########################################
+#### Script Description
+########################################
+# The purpose of the script is to keep the static files from my other repos
+# (e.g., .html, .pdf, or .md) that I use in my website updated in the website
+# repo that netlify uses to build it. I had at first tried to redirect direct
+# links to the files on github, but ran into a few issues. It pulls copys of
+# all of the necesary repos, checks if the files specified in the accompanying
+# csv are up to date in the website repo and copies them over if they are not.
+# The website repo then accepts all changes and pushes them to the github repo
+# that netlify uses.
+
+
+########################################
+#### CSV Description
+########################################
 # A csv will hold specific file information. Each row dictates a particular file
 # to copy over. It will contian the following columns:
 #  * user - Github username for the repo (currently unused in script)
@@ -10,24 +31,37 @@
 
 
 
+########################################
+#### Setup for Automatic Updates usig Cron
+########################################
+# Edit/create the crontab on the computer
+#$ crontab -e
+
+#Add this line and save the file
+#*/10    *       *       *       *       /home/charles/WebsiteManagement/personal_website/update_files_from_other_repos.sh
+
+# Verify changes with
+#$ crontab -l
+
+
 
 ########################################
 #### Global Variables ##################
 ########################################
-githubRepoLoc="/home/jacpete/WebsiteManagement"
-# githubRepoLoc="/home/jacpete/Storage/GitHub"
+githubRepoLoc="/home/charles/WebsiteManagement"
 websiteRepo="personal_website"
 csvName="update_files_from_other_repos.csv"
+
+
+
+
+
 
 ########################################
 #### Define Functions ##################
 ########################################
 
-
 #### Git Functions (assumes ssh has been set up with the machine)
-
-
-
 #$1: current repo name
 setup_local_repo () {
   currentRepoSSH="git@github.com:jacpete/$1.git"
@@ -44,7 +78,7 @@ update_local_repo () {
   else #update repo from github
     cd $1
     echo "Updating ${1} repo"
-    git pull 
+    git pull
     cd ${githubRepoLoc}
   fi
 }
@@ -56,13 +90,15 @@ update_local_repo () {
 #### General Script ####################
 ########################################
 
-#Update Website Repo
-update_local_repo ${websiteRepo}
-
-
 #### Absolute filepath of csvName
 csvName="${githubRepoLoc}/${websiteRepo}/${csvName}"
 # echo "${csvName}"
+
+
+#Update Website Repo
+update_local_repo ${websiteRepo}
+chmod +x ${csvName/.csv/.sh} #ensure the script is executable
+
 
 #### Read in data from CSV
 userList=($(cat $csvName |  awk -F "," '{print $1}' | awk 'NR>1' | awk 'NF > 0')) #currently nothing is done with this and the script assumes its from my username (jacpete)
@@ -84,8 +120,8 @@ do
 done
 
 
-# printf '%s\n' "${oriFileLocList[@]}" 
-# printf '%s\n' "${websiteFileLocList[@]}" 
+# printf '%s\n' "${oriFileLocList[@]}"
+# printf '%s\n' "${websiteFileLocList[@]}"
 
 #### Copy Files to the website directory
 for i in ${!oriFileLocList[*]}
@@ -98,7 +134,7 @@ do
   # echo $websiteFileLoc
   websiteFile="${websiteFileLoc}/${filename}"
   # echo $websiteFile
-  if [ -f ${websiteFile} ] #if website file exists 
+  if [ -f ${websiteFile} ] #if website file exists
   then
     # diff -q ${oriFile} ${websiteFile} 1>/dev/null
     # if [[ $? != "0" ]]
