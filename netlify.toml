@@ -45,7 +45,7 @@
 
 [[redirects]]
   from = "/resume.pdf"
-  to = "/repo/Resume_CV/pdf/resume.pdf"
+  to = "/repo/Resume_CV/pdf/resume_Peterson.pdf"
   status = 200
   force = true
 
