@@ -157,9 +157,9 @@ git diff --exit-code #Are there differences in the website repo compared to the 
 if [[ $? != "0" ]]
 then
   echo "Updating Website Repo"
-  git add --all
+  # git add --all
   git commit -am "Updated static files from other repos with update_file_from_other_repos.sh script: $(date +'%Y-%m-%d   %T')"
-  git push
+  #git push origin master
 else
   echo "All files up to date in website repo"
 fi
