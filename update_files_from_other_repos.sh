@@ -153,13 +153,12 @@ done
 #### Update Website Repository
 cd "${githubRepoLoc}/${websiteRepo}"
 
-# git diff --exit-code #Are there differences in the website repo compared to the last pull from master?
-# if [[ $? != "0" ]]
-if output=$(git status --porcelain) && [ ! -z "$output" ]
+if output=$(git status --porcelain) && [ ! -z "$output" ] #Are there differences in the website repo compared to the last pull from master?
+                                                          #Have to use git status not git diff to catch new files in check
 then
   echo "Updating Website Repo"
   git add --all
-  git commit -am "Updated static files from other repos with update_file_from_other_repos.sh script: $(date +'%Y-%m-%d   %T')"
+  git commit -am "Updated files from other repos: $(date +'%Y-%m-%d   %T')"
   git push origin master
 else
   echo "All files up to date in website repo"
