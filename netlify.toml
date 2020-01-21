@@ -27,13 +27,31 @@
 
 [[redirects]]
   from = "/cv"
-  to = "/html/cv_Peterson.html"
+  to = "/repo/Resume_CV/html/cv_Peterson.html"
   status = 200
   force = true
 
 [[redirects]]
   from = "/resume"
-#  to = "https://htmlpreview.github.io/?https://github.com/jacpete/Resume_CV/blob/master/resume.html"
-  to = "/html/resume.html"
+  to = "/repo/Resume_CV/html/resume.html"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/cv.pdf"
+  to = "/repo/Resume_CV/pdf/cv_Peterson.pdf"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/resume.pdf"
+  to = "/repo/Resume_CV/pdf/resume.pdf"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/test.txt"
+  to = "/repo/testRepo/test.txt"
+  status = 200
+  force = true
+

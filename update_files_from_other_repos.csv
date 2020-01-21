@@ -1,4 +1,6 @@
 user,repo,oriFileLoc,websiteFileLoc
-jacpete,Resume_CV,cv_Peterson.html,static/html
-jacpete,Resume_CV,resume.html,static/html
-jacpete,testRepo,test.txt,static
+jacpete,Resume_CV,cv_Peterson.html,static/repo/Resume_CV/html
+jacpete,Resume_CV,resume.html,static/repo/Resume_CV/html
+jacpete,Resume_CV,cv_Peterson.pdf,static/repo/Resume_CV/pdf
+jacpete,Resume_CV,resume_Peterson.pdf,static/repo/Resume_CV/pdf
+jacpete,testRepo,test.txt,static/repo/testRepo
