@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Source Themes Academic: Theme updater
 # Checks for available updates and then asks to install any updates.
