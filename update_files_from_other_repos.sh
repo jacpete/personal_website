@@ -38,7 +38,7 @@
 #$ crontab -e
 
 #Add this line and save the file
-#*/10    *       *       *       *       /home/charles/WebsiteManagement/personal_website/update_files_from_other_repos.sh
+#*/15 * * * * /home/charles/WebsiteManagement/personal_website/update_files_from_other_repos.sh
 
 # Verify changes with
 #$ crontab -l
