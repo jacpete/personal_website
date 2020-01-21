@@ -155,7 +155,7 @@ cd "${githubRepoLoc}/${websiteRepo}"
 
 # git diff --exit-code #Are there differences in the website repo compared to the last pull from master?
 # if [[ $? != "0" ]]
-if output=$(git status --porcelain) && [ -z "$output" ]
+if output=$(git status --porcelain) && [ ! -z "$output" ]
 then
   echo "Updating Website Repo"
   git add --all
