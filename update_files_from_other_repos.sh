@@ -143,6 +143,7 @@ do
     fi
   else
     echo "Adding ${filename} to website repo"
+    mkdir -p "${websiteFileLoc}" #ensure filepath exists and create if not
     cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
   fi
 done
