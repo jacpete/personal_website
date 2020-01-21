@@ -160,6 +160,13 @@ then
   git commit -am "Updated files from other repos: $(date +'%Y-%m-%d   %T')"
   git push origin master
 else
-  echo "All files up to date in website repo"
+  if output=$(git cherry -v) && [ ! -z "$output" ] #Are there unpushed commits
+                                                   #Sometimes the script will commit but not push
+  then
+    echo "Pushing committed changes to website repo"
+    git push origin master
+  else
+    echo "All files up to date in website repo"
+  fi
 fi
 
