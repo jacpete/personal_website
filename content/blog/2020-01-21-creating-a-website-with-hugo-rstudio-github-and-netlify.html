@@ -21,9 +21,15 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-draft: true
+draft: false
 ---
 
 
 
-
+<pre class="r"><code>library(ggplot2)
+data(&quot;iris&quot;)
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) +
+  geom_point()</code></pre>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/figure-html/R-script-1.png" width="672" /></p>
+<pre class="bash"><code>echo &quot;Does this work&quot;</code></pre>
+<pre><code>## Does this work</code></pre>

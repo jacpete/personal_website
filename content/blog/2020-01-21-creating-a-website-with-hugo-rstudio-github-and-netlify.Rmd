@@ -21,5 +21,18 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-draft: true
+draft: false
 ---
+
+
+
+```{r R-script}
+library(ggplot2)
+data("iris")
+ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) +
+  geom_point()
+```
+
+```{bash}
+echo "Does this work"
+```
