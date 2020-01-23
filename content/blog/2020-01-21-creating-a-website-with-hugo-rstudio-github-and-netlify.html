@@ -20,16 +20,144 @@ image:
   caption: ''
   focal_point: ''
   preview_only: no
-projects: []
-draft: true
+projects: [website]
+draft: false
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#software-requirements-and-suggestions">Software Requirements and Suggestions</a></li>
+<li><a href="#suggested-reading">Suggested Reading</a></li>
+</ul></li>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#initializing-your-website-repository">Initializing your Website Repository</a></li>
+<li><a href="#setting-up-rstudio-with-a-local-repository">Setting up Rstudio with a Local Repository</a><ul>
+<li><a href="#cloning-the-repository">Cloning the Repository</a></li>
+<li><a href="#installing-dependencies">Installing Dependencies</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#customizing-the-website">Customizing the Website</a></li>
+<li><a href="#additional-support">Additional Support</a></li>
+</ul>
+</div>
 
-<pre class="r"><code>library(ggplot2)
-data(&quot;iris&quot;)
-ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width)) +
-  geom_point()</code></pre>
-<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/figure-html/R-script-1.png" width="672" /></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I have been thinking about creating a website for a few years to showcase the projects I am working on and create a blog where I can make my work more accessible to others.
+I wanted to start my blog out with a post describing how I set up my website.</p>
+<p>After exploring a few places to host a website (<a href="https://www.weebly.com/">weebly</a>, <a href="https://pages.github.com/">GitHub Pages</a>, and <a href="https://www.netlify.com/">Netlify</a>) and testing out a couple static website generators, I decided to use <a href="https://gohugo.io/">Hugo</a> using the popular <a href="https://themes.gohugo.io/academic/">Academic Theme</a>.
+My reason for choosing this route was to follow a well traveled road with plenty of available support through documentation and forums while also choosing an option that allows lots of customizability.</p>
+<div id="software-requirements-and-suggestions" class="section level2">
+<h2>Software Requirements and Suggestions</h2>
+<p>All the software needed can be installed across all major operating systems (Linux, macOS X, and Microsoft Windows).</p>
+<ul>
+<li><p><strong>GitHub</strong> account - This will be used to make your website code available to Netlify to host.</p></li>
+<li><p><strong>Netlify</strong> account - I choose to sign in with my GitHub credentials because you have to give Netlify access to your GitHub account anyways to manage your repo.</p></li>
+<li><p><strong>Hugo</strong> - This is the static website generator program. It can easily be installed and updated using the <strong>R</strong> package <code>blogdown</code>.</p></li>
+<li><p><strong>R</strong> and <strong>Rstudio</strong> is optional and your website could be managed entirely without them, but the <code>blogdown</code> R package with Rstudio Add-ins will make your life a lot easier and I use these programs in my instructions.</p></li>
+<li><p><strong>Atom Text Editor</strong> is optional but I use it when writing large text blocks for because it has spell check added in, while Rstudio does not.</p></li>
+</ul>
+</div>
+<div id="suggested-reading" class="section level2">
+<h2>Suggested Reading</h2>
+<p>A lot of what I learned to complete my website build came from the <a href="https://bookdown.org/yihui/blogdown/">blogdown book</a> by <a href="https://yihui.org">Yihui Xie</a>, <a href="https://amber.rbind.io">Amber Thomas</a>, and <a href="https://alison.rbind.io">Alison Presmanes Hill</a> on creating a website in Rstudio using the <code>blogdown</code> R package. It has an entire chapter dedicated to introducing new users to <strong>Hugo</strong> and discusses how to deploy your site using <strong>Netlify</strong>.</p>
+</div>
+</div>
+<div id="getting-started" class="section level1">
+<h1>Getting Started</h1>
+<div id="initializing-your-website-repository" class="section level2">
+<h2>Initializing your Website Repository</h2>
+<p>The Academic Hugo theme has a wonderful <a href="https://sourcethemes.com/academic/docs/install/">help guide</a> describing how to install the theme with various methods. I chose the recommended method and was happy with the result and will share it with you here. This method uses Netlify to create a repository for your website on GitHub with all the basic materials needed to get started creating your own website. Netlify as a hosting service will automatically provide you with a customizable sub-domain URL or allow to to link to your own domain.</p>
+<p>Follow the link to <a href="https://app.netlify.com/start/deploy?repository=https://github.com/sourcethemes/academic-kickstart">Deploy and Academic Site with Netlify</a>.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/netlifyDeploy.png" /></p>
+<p>Click on the Connect to GitHub link and login with your GitHub credentials.</p>
+<p>Change the Repository name to anything you want. I called mine <code>personal_website</code>. And click <em>Save and Deploy</em>.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/websiteName.png" /></p>
+<p>The best thing about creating your base website with this method, is that all the basic Netlify configuration is done for you and your website will deploy without effort on your part.
+A new page will load that contains your websites settings and its current randomly generated URL.
+Mine here is <code>https://determined-allen-0ba60a.netlify.com</code>.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialNetlify.png" /></p>
+<p>If you click that link, you will be taken to your website.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialWebsite.png" /></p>
+<p>The next thing you may be wondering though is how to change the URL to your website from that crazy generated one.
+Netlify makes this easy as well.</p>
+<p>If you go back to the landing page for your websites settings you can click the site settings button under the URL that took you to your website. From there you can change your sub-domain with the change site name button.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/changeNetlifySubdomain2.png" /></p>
+<p>Now you can use the updated custom sub-domain to get top your website.</p>
+<p>Additionally, you can set a custom domain name. Using the link labeled <em>Set up a custom domain</em> on the landing page for your websites settings. This allows you to use your own domain name you already own, or you can buy a domain through Netlify and they configure DNS settings and provide a security certificate for you.</p>
+<p>I personally don’t know at the moment how difficult that is to manage yourself, so I chose the simplest solution and bought a domain name from Netlify.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/newDomain.png" /></p>
+<p>You now have a website with a nice custom URL that will be much easier for people looking for it to find or remember.</p>
+<p><br>
+<br></p>
+<p>But where is this data all stored? It deploys from the GitHub repository that you created. If you head on over to your GitHub, you will find the repository you named in the initial steps with all the data for your website.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialGithub.png" /></p>
+</div>
+<div id="setting-up-rstudio-with-a-local-repository" class="section level2">
+<h2>Setting up Rstudio with a Local Repository</h2>
+<p>Now that you have a basic website deployed you need a way to edit it. <strong>Rstudio</strong> and the <code>blogdown</code> package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, check out these guides for a quick introduction:</p>
+<ul>
+<li>Add guides</li>
+<li>And links</li>
+<li>Here</li>
+</ul>
+<div id="cloning-the-repository" class="section level3">
+<h3>Cloning the Repository</h3>
+<p>This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using Rstudio and you can find a tutorial on how to complete this <a href="">here</a>.</p>
+<p><strong>Need to add link here</strong></p>
+<p>To add a new GitHub project, go to the project drop down on the top-right corner of your Rstudio window and click <em>New Project</em></p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject1.png" /></p>
+<p>This opens a new window with a few options. Because you are hosting your website in a GitHub repository we are inherently using version control with <strong>Git</strong>. Confirm that your choices in the next two windows reflect that.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject2.png" /></p>
+<p>Finally retrive the SSH clone URL for your website repository from GitHub and copy it into the final New Project window in Rstudio.
+Make sure it saves to the directory you want and click <em>Create Project</em>.
+The repo will then clone itself into the new directory and open up as an Rstudio project.</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject3.png" /></p>
+<p>Congratulations you now have a local version of your website repository that you can customize.</p>
+</div>
+<div id="installing-dependencies" class="section level3">
+<h3>Installing Dependencies</h3>
+<div id="blogdown-package" class="section level4">
+<h4><code>blogdown</code> package</h4>
+<p>Install the blogdown package with the following code in Rstudio.</p>
+<pre class="r"><code>install.packages(&#39;blogdown&#39;)</code></pre>
+<p>This package provides helpful functions and add-ins that will make editing your website easier.</p>
+<img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/blogdownAddins.png" />
+<p align="center">
+blogdown Add-ins
+</p>
+</div>
+<div id="hugo" class="section level4">
+<h4>Hugo</h4>
+<p>Install the latest version of Hugo with:</p>
+<pre class="r"><code>blogdown::install_hugo()</code></pre>
+<p>However, you could also install the version of Hugo that Netlify is currently using by checking the netlify.toml file from the root of your website repository:</p>
+<p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/netlifyHugoVersion.png" /></p>
+<p>Then specify which version of Hugo you want to install.</p>
+<pre class="r"><code>blogdown::install_hugo(version = &quot;0.60.1&quot;)</code></pre>
+</div>
+<div id="academic-theme-for-hugo" class="section level4">
+<h4>Academic Theme for Hugo</h4>
+</div>
+</div>
+</div>
+</div>
+<div id="customizing-the-website" class="section level1">
+<h1>Customizing the Website</h1>
 <pre class="bash"><code>echo &quot;Does this work&quot;</code></pre>
-<pre><code>## Does this work</code></pre>
+</div>
+<div id="additional-support" class="section level1">
+<h1>Additional Support</h1>
+<p>To find help customizing the Academic theme check out the <a href="https://sourcethemes.com/academic/docs/">themes documentation</a>, the <a href="https://spectrum.chat/academic?tab=posts">community forum</a>, or some of my other blog posts within the website project tag.</p>
+<p>Other helpful sources that I used when researching and setting up my website:</p>
+<ul>
+<li>Blog posts by <a href="https://amber.rbind.io">Amber Thomas</a> on creating a website with <code>blogdown</code>, Hugo, and Netlify. (<a href="https://amber.rbind.io/2016/12/19/website/">First Post</a>) (<a href="https://alison.rbind.io/post/2017-06-12-up-and-running-with-blogdown/#caveats-disclaimers-etc.">Second Post</a>)</li>
+<li><a href="https://bookdown.org/yihui/blogdown/"><code>blogdown</code> book</a> by <a href="https://yihui.org">Yihui Xie</a>, <a href="https://amber.rbind.io">Amber Thomas</a>, and <a href="https://alison.rbind.io">Alison Presmanes Hill</a> on creating a website in Rstudio using the <code>blogdown</code> R package</li>
+<li>Blog post from <a href="http://nickstrayer.me/">Nick Strayer</a> and <a href="https://www.lucymcgowan.com/">Lucy McGowan</a> on <a href="https://livefreeordichotomize.com/2017/08/08/how-to-make-an-rmarkdown-website/">setting up a website with GitHub Pages</a></li>
+</ul>
+</div>
