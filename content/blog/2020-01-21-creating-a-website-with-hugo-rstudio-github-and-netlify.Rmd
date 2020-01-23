@@ -172,6 +172,18 @@ blogdown::install_hugo(version = "0.60.1")
 
 #### Academic Theme for Hugo
 
+The Academic theme is attached to the repo using a git submodule. To add local access go to a terminal and type the following commands:
+
+```{bash bash-script, results = 'hide', eval = FALSE}
+#Enter the working directory for the project
+cd ~/GitHub/personal_website
+git submodule update --init --recursive
+```
+
+
+
+
+
 # Customizing the Website
 
 ```{r setup, include=FALSE, message=FALSE}
@@ -180,10 +192,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-
-```{bash bash-script, results = 'hide'}
-echo "Does this work"
-```
 
 
 # Additional Support
