@@ -81,7 +81,7 @@ privacy_pack = false
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
-email = ""
+email = "JacobPetersonMSc@gmail.com"
 phone = ""
 
 # Address
@@ -105,7 +105,8 @@ phone = ""
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
 contact_links = [
-  #{icon = "twitter", icon_pack = "fab", name = "DM Me", link = "https://twitter.com/PetersonJacobM"},
+  {icon = "github", icon_pack = "fab", name = "github.com/jacpete", link = "https://github.com/jacpete"},
+  {icon = "twitter", icon_pack = "fab", name = "@PetersonJacobM", link = "https://twitter.com/PetersonJacobM"},
   #{icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
   #{icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
   #{icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
@@ -120,7 +121,7 @@ contact_links = [
 sharing_image = ""
 
 # Twitter username (without @). Used when a visitor shares your site on Twitter.
-twitter = ""
+twitter = "PetersonJacobM"
 
 ############################
 ## Regional Settings
