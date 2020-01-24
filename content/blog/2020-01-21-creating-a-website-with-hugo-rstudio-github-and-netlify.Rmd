@@ -1,5 +1,5 @@
 ---
-title: Creating A Website with Hugo, Rstudio, GitHub, and Netlify
+title: Creating A Website with Hugo, RStudio, GitHub, and Netlify
 author: Jacob Peterson
 date: '2020-01-21'
 slug: creating-a-website-with-hugo-rstudio-github-and-netlify
@@ -7,12 +7,12 @@ categories:
   - Website
 tags:
   - Hugo
-  - Rstudio
+  - RStudio
   - Netlify
   - GitHub
   - Academic
 subtitle: ''
-summary: ''
+summary: 'This is my quick summary'
 authors: []
 lastmod: '2020-01-21T19:26:44-06:00'
 featured: no
@@ -45,13 +45,13 @@ All the software needed can be installed across all major operating systems (Lin
 
 * **Hugo** - This is the static website generator program. It can easily be installed and updated using the **R** package `blogdown`.
 
-* **R** and **Rstudio** is optional and your website could be managed entirely without them, but the `blogdown` R package with Rstudio Add-ins will make your life a lot easier and I use these programs in my instructions.
+* **R** and **RStudio** is optional and your website could be managed entirely without them, but the `blogdown` R package with RStudio Add-ins will make your life a lot easier and I use these programs in my instructions.
 
-* **Atom Text Editor** is optional but I use it when writing large text blocks for because it has spell check added in, while Rstudio does not.
+* **Atom Text Editor** is optional but I use it when writing large text blocks for because it has spell check added in, while RStudio does not.
 
 ## Suggested Reading
 
-A lot of what I learned to complete my website build came from the [blogdown book](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://yihui.org), [Amber Thomas](https://amber.rbind.io), and [Alison Presmanes Hill](https://alison.rbind.io) on creating a website in Rstudio using the `blogdown` R package. It has an entire chapter dedicated to introducing new users to **Hugo** and discusses how to deploy your site using **Netlify**.
+A lot of what I learned to complete my website build came from the [blogdown book](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://yihui.org), [Amber Thomas](https://amber.rbind.io), and [Alison Presmanes Hill](https://alison.rbind.io) on creating a website in RStudio using the `blogdown` R package. It has an entire chapter dedicated to introducing new users to **Hugo** and discusses how to deploy your site using **Netlify**.
 
 
 
@@ -107,9 +107,9 @@ But where is this data all stored? It deploys from the GitHub repository that yo
 
 
 
-## Setting up Rstudio with a Local Repository
+## Setting up RStudio with a Local Repository
 
-Now that you have a basic website deployed you need a way to edit it. **Rstudio** and the `blogdown` package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, check out these guides for a quick introduction:
+Now that you have a basic website deployed you need a way to edit it. **RStudio** and the `blogdown` package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, check out these guides for a quick introduction:
 
  * Add guides
  * And links
@@ -117,11 +117,11 @@ Now that you have a basic website deployed you need a way to edit it. **Rstudio*
 
 ### Cloning the Repository
 
-This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using Rstudio and you can find a tutorial on how to complete this [here]().
+This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using RStudio and you can find a tutorial on how to complete this [here]().
 
 **Need to add link here**
 
-To add a new GitHub project, go to the project drop down on the top-right corner of your Rstudio window and click *New Project*
+To add a new GitHub project, go to the project drop down on the top-right corner of your RStudio window and click *New Project*
 
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject1.png)
 
@@ -129,9 +129,9 @@ This opens a new window with a few options. Because you are hosting your website
 
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject2.png)
 
-Finally retrive the SSH clone URL for your website repository from GitHub and copy it into the final New Project window in Rstudio. 
+Finally retrive the SSH clone URL for your website repository from GitHub and copy it into the final New Project window in RStudio.
 Make sure it saves to the directory you want and click *Create Project*.
-The repo will then clone itself into the new directory and open up as an Rstudio project.  
+The repo will then clone itself into the new directory and open up as an RStudio project.
 
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject3.png)
 
@@ -142,7 +142,7 @@ Congratulations you now have a local version of your website repository that you
 
 #### `blogdown` package
 
-Install the blogdown package with the following code in Rstudio.
+Install the blogdown package with the following code in RStudio.
 ```{r Install-Blogdown, echo = TRUE, results = 'hide', eval = FALSE}
 install.packages('blogdown')
 ```
@@ -202,7 +202,7 @@ To find help customizing the Academic theme check out the [themes documentation]
 Other helpful sources that I used when researching and setting up my website:
 
 * Blog posts by [Amber Thomas](https://amber.rbind.io) on creating a website with `blogdown`, Hugo, and Netlify. ([First Post](https://amber.rbind.io/2016/12/19/website/)) ([Second Post](https://alison.rbind.io/post/2017-06-12-up-and-running-with-blogdown/#caveats-disclaimers-etc.))
-* [`blogdown` book](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://yihui.org), [Amber Thomas](https://amber.rbind.io), and [Alison Presmanes Hill](https://alison.rbind.io) on creating a website in Rstudio using the `blogdown` R package
+* [`blogdown` book](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://yihui.org), [Amber Thomas](https://amber.rbind.io), and [Alison Presmanes Hill](https://alison.rbind.io) on creating a website in RStudio using the `blogdown` R package
 * Blog post from [Nick Strayer](http://nickstrayer.me/) and [Lucy McGowan](https://www.lucymcgowan.com/) on [setting up a website with GitHub Pages](https://livefreeordichotomize.com/2017/08/08/how-to-make-an-rmarkdown-website/)
 
 
