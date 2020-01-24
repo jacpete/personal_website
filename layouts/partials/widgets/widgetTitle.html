@@ -1,0 +1,20 @@
+{{ $ := .root }}
+{{ $page := .page }}
+{{ $bg := $page.Params.design.background }}
+{{ $ho := $page.Params.heading.options }}
+
+{{ if $page.Params.hero_media }}
+<div class="row">
+  <div class="col-md-6 order-md-1 text-center text-md-left">
+{{ end }}
+
+  <h1 class="widgetTitle-title" >
+      {{ with $page.Title }}{{ . | markdownify }}{{ end }}
+    </h1>
+
+  <h2 class="widgetTitle-subtitle" >
+      {{ with $page.Params.subtitle }}{{ . | markdownify }}{{ end }}
+    </h2>
+
+  </div>
+</div>
