@@ -33,7 +33,7 @@
 
 # Specialized
 
-## customize post archetype
+## customize post archetype to be called blog-post
 
 draft: true  
 output:  
