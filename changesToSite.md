@@ -65,5 +65,4 @@ type: "widget_page"  # Page type is a Widget Page
   - copy hero widget
   - create new heading class (heading.options) in toml of widgetTitle.md and reference shortcut to get parameters in the widget.html ($ho)
     - still need to add these options in
-  [] need to shrink lower padding
   [] need to add if thens for options
