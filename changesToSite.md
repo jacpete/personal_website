@@ -66,3 +66,14 @@ type: "widget_page"  # Page type is a Widget Page
   - create new heading class (heading.options) in toml of widgetTitle.md and reference shortcut to get parameters in the widget.html ($ho)
     - still need to add these options in
   [] need to add if thens for options
+
+
+## fancypagination
+* Copy script from https://glennmccomb.com/articles/how-to-build-custom-hugo-pagination/ to /layouts/partials/fancypagination.html
+* Add justify-content-center class to the ul in fancypagination.html to get centering
+* Add css for this section to custom.scss
+* in blog.html change  
+{{ partial "pagination" . }}  
+to  
+{{ partial "fancypagination.html" . }}  
+

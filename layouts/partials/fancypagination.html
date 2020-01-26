@@ -42,8 +42,8 @@
 <!-- If there's more than one page. -->
 {{ if gt $paginator.TotalPages 1 }}
 
-<nav>
-  <ul class="pagination justify-content-center">
+  <!-- Add justify-content-center -->
+  <ul class="pagination justify-content-center"> 
     
     <!-- First page. -->
     {{ if ne $paginator.PageNumber 1 }}
@@ -140,5 +140,4 @@
     {{ end }}
 
   </ul><!-- .pagination -->
-  </nav>
 {{ end }}

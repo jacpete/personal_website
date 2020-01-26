@@ -21,4 +21,39 @@ h2.widgetTitle-subtitle {
   padding-bottom: 50px;
 }
 
+// ######################
+// customHeading Settings
+// ######################
 
+.customHeading {
+  margin-top: 0;
+  text-align: center;
+}
+
+h1.customHeading {
+  font-size: 4rem;
+}
+
+h2.customHeading {
+  font-size: 2rem;
+}
+
+
+// ######################
+// fancypagination Settings
+// ######################
+
+.pagination li>a {
+  margin: 0 4px; //space out page sections
+  font-size: 1.5rem; //increase font size
+  border: hidden !important; //force hidden border
+}
+
+.pagination__item--current {
+  border: 1px solid #2962ff; //add border on current page number
+}
+
+a:hover {
+    color: #003adc !important; //force color change during hover
+}
+ 

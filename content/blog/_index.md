@@ -13,4 +13,6 @@ header:
   image: ""
 ---
 
-<h1> Where does this heading go? </h1>
+<h1 class="customHeading"> Blog Posts </h1>
+
+<!-- <h2 class="customHeading"> All of Them </h2> -->
