@@ -1,11 +1,11 @@
 <!--
+//  Copied from https://glennmccomb.com/articles/how-to-build-custom-hugo-pagination/
+//  All credit goes to Glenn McComb
 //  
 //  OUTPUT POSTS
 //––––––––––––––––––––––––––––––––––––––––––––––––––
-//  Copied from https://glennmccomb.com/articles/how-to-build-custom-hugo-pagination/
-//  All credit goes to Glenn McComb
 -->
-{{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }}
+<!-- {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }}
 
 {{ range $paginator.Pages }}
   <div class="post">
@@ -16,7 +16,9 @@
       {{ .Summary }}
     </div>
   </div>
-{{ end }}
+{{ end }} -->
+
+
 
 <!--
 //

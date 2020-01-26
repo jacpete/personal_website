@@ -17,9 +17,10 @@
     {{ else }}
       {{ partial "li_compact" . }}
     {{ end }}
-  {{ end }}
+  {{ end }} 
 
-  {{ partial "pagination" . }}
+  <!-- {{ partial "pagination" . }} -->
+  {{ partial "fancypagination.html" . }}
 
 </div>
 
