@@ -77,3 +77,8 @@ type: "widget_page"  # Page type is a Widget Page
 to  
 {{ partial "fancypagination.html" . }}  
 
+## tag cloud
+* create term_cloud.html as a partial controlling the tag cloud
+* mostly copied form one source but had to edit it to get the sizing to happen automatically
+* added partial call to blog.html
+
