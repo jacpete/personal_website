@@ -7,6 +7,11 @@
   {{ with .Content }}
   <div class="article-style">{{ . }}</div>
   {{ end }}
+  
+  
+  <div style="margin: 20px 5px 30px;">
+    {{ partial "term_cloud.html" . }}
+  </div>
 
   {{ $paginator := .Paginate .Data.Pages }}
   {{ range $paginator.Pages }}
