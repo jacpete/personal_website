@@ -1,4 +1,4 @@
-<!-- Code copied from https://www.henriksommerfeld.se/hugo-tag-could/ -->
+<!-- Code adapted from https://www.henriksommerfeld.se/hugo-tag-could/ -->
 {{- if gt (len .Site.Taxonomies.tags) 0 -}}
     {{- $fontUnit := "rem" -}}
     {{- $largestFontSize := 1.8 -}}
@@ -8,20 +8,23 @@
     <div>Font min size: {{ $smallestFontSize }}</div>
     <div>Font max size: {{ $largestFontSize }}</div>
     <div>Font size spread: {{ $fontSizeSpread }}</div>-->
-
-    <!-- {{- .Scratch.Set "tagCountSlice" (slice 7) -}}
-
-    <div>Test: {{index ( $.Scratch.Get "tagCountSlice" ) 0}}</div> -->
     
-    <!-- Create slice and set first entry to 0 -->
+    <!-- Create slice and set first entry to 0 (dummy index)-->
     {{- $.Scratch.Set "tagCountSlice" (slice 0) -}}
     
     <!-- Loop over all tags and get number of pages and add to slice -->
     {{- range $name, $taxonomy := $.Site.Taxonomies.tags -}} 
       {{- $currentTagCount := len $taxonomy.Pages -}}
-      {{- $.Scratch.Add "tagCountSlice" (slice $currentTagCount) -}}
+      <!-- If the first index is 0 (the fummy index reset the scratch variable) -->
+      {{- if eq ( index ( $.Scratch.Get "tagCountSlice" ) 0 ) 0 -}}
+        {{- $.Scratch.Set "tagCountSlice" (slice $currentTagCount) -}}
+      <!-- Otherwise append the slice -->
+      {{- else -}}
+        {{- $.Scratch.Add "tagCountSlice" (slice $currentTagCount) -}}
+      {{ end }}
     {{- end -}}
-    
+    <!-- <div>Sort: {{- delimit (.Scratch.Get "tagCountSlice") ", " -}}</div> -->
+
 
     <!-- Create sorted list of tag counts -->
     {{- $tagCountSliceOrder := sort (.Scratch.Get "tagCountSlice") -}}
@@ -32,8 +35,8 @@
     {{- $maxCount := (index (last 1 $tagCountSliceOrder) 0) -}}
     <!-- <div>Max tag count: {{ $maxCount }}</div> -->
     
-    <!-- Use the second index beause I added a 0 as the first to start the slice -->
-    {{- $minCount := (index $tagCountSliceOrder 1) -}}
+    <!-- Get the minimum from the first index of the sorted slice -->
+    {{- $minCount := (index $tagCountSliceOrder 0) -}}
     <!-- <div>Min tag count: {{ $minCount }}</div> -->
 
     {{- $countSpread := sub $maxCount $minCount -}}
