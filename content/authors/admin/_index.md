@@ -38,6 +38,15 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/jacpete
+
+#resume icon downloaded from https://www.flaticon.com/free-icon/resume-document_85047#
+#- icon: resume
+#  icon_pack: jp
+#  link: /resume
+#cv icon downloaded from https://www.pngkey.com/detail/u2e6e6y3e6y3r5r5_file-document-cv-curriculum-vitae-svg-png-icon/
+- icon: cv
+  icon_pack: ai
+  link: /cv
 superuser: true
 user_groups:
 - Researchers
@@ -45,7 +54,7 @@ user_groups:
 ---
 
 My career has given me experience applying a broad range of statistical and spatial methodologies and honed me into expert in R programming and working with GIS.
-Academic research has prepared me  to think critically, learn new skills independently and quickly, manage complex projects, and collaborate within teams to achieve results. 
+Academic research has prepared me  to think critically, learn new skills independently and quickly, manage complex projects, and collaborate within teams to achieve results.
 I enjoy exploring datasets, solving the puzzles that accompany analysis, and transforming raw data into the solutions used to answer important questions.  
 I am currently looking for a data science position that allows me to solve pragmatic problems while leveraging my skills in data management, GIS, and statistical analysis.
 
