@@ -46,7 +46,7 @@ social:
 #cv icon downloaded from https://www.pngkey.com/detail/u2e6e6y3e6y3r5r5_file-document-cv-curriculum-vitae-svg-png-icon/
 - icon: cv
   icon_pack: ai
-  link: /cv
+  link: /cv-resume
 superuser: true
 user_groups:
 - Researchers
