@@ -84,4 +84,15 @@ to
 * added partial call to blog.html
 
 ## add landing page for cv and resume with link from bio
+* fill in page with links to cv and resume in different forms
+
+## add custom icon to /assets/images/icon.png
+* needs to 512x512px
+
+## create custom blog post layout
+* copy files: 
+  - /themes/academic/layouts/_default/single.html to /layouts/blog/single.html
+  - /themes/academic/layouts/partials/page_header.html to /layouts/blog and rename as blog_header.html
+  - /themes/academic/layouts/partials/page_footer.html to /layouts/blog and rename as blog_footer.html
+* customize article-tags class spacing with css
 
