@@ -13,7 +13,7 @@
 ## config.toml
 
 * title = "Jacob Peterson"
-* copyright = "&copy; 2020"
+* copyright = "&copy; Jacob Peterson, 2020"
 * theme = "academic"
 * enableGitInfo = true
 
@@ -77,6 +77,9 @@ type: "widget_page"  # Page type is a Widget Page
 {{ partial "pagination" . }}  
 to  
 {{ partial "fancypagination.html" . }}  
+* created a custom local version of layouts/\_default/list.html to use fancypagination as well so that most pages will use it
+  - search for pagination in layouts folder to see other files that use the default (keep them in mind for future edits)
+  - may acutally just override the default pagination partial and change everything back to it
 
 ## tag cloud
 * create term_cloud.html as a partial controlling the tag cloud
@@ -91,7 +94,7 @@ to
 
 ## create custom blog post layout
 * copy files: 
-  - /themes/academic/layouts/_default/single.html to /layouts/blog/single.html
+  - /themes/academic/layouts/\_default/single.html to /layouts/blog/single.html
   - /themes/academic/layouts/partials/page_header.html to /layouts/blog and rename as blog_header.html
   - /themes/academic/layouts/partials/page_footer.html to /layouts/blog and rename as blog_footer.html
 * customize article-tags class spacing with css
