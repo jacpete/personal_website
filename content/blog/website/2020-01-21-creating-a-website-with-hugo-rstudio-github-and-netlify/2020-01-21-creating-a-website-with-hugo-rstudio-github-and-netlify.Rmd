@@ -32,7 +32,7 @@ output:
 I have been thinking about creating a website for a few years to showcase the projects I am working on and create a blog where I can make my work more accessible to others.
 I wanted to start my blog out with a post describing how I set up my website.
 
-After exploring a few places to host a website ([weebly](https://www.weebly.com/), [GitHub Pages](https://pages.github.com/), and [Netlify](https://www.netlify.com/)) and testing out a couple static website generators, I decided to use [Hugo](https://gohugo.io/) using the popular [Academic Theme](https://themes.gohugo.io/academic/).
+After exploring a few places to host a website ([weebly](https://www.weebly.com/), [GitHub Pages](https://pages.github.com/), and [Netlify](https://www.netlify.com/)) and testing out a couple static website generators, I decided to use [Hugo](https://gohugo.io/) with the popular [Academic Theme](https://themes.gohugo.io/academic/).
 My reason for choosing this route was to follow a well traveled road with plenty of available support through documentation and forums while also choosing an option that allows lots of customizability.
 
 ## Software Requirements and Suggestions
@@ -196,7 +196,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Additional Support
 
-To find help customizing the Academic theme check out the [themes documentation](https://sourcethemes.com/academic/docs/), the [community forum](https://spectrum.chat/academic?tab=posts), or some of my other blog posts within the website project tag.
+To find help customizing the Academic theme check out the [themes documentation](https://sourcethemes.com/academic/docs/), the [community forum](https://spectrum.chat/academic?tab=posts), or some of my other blog posts within the [website category](/categories/website).
 
 
 Other helpful sources that I used when researching and setting up my website:
