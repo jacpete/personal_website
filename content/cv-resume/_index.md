@@ -15,6 +15,9 @@ header:
 
 <h1 class="customHeading"> CV and Resume </h1>
 
+<br>
+<br>
+
 You can find view my full **CV** below.
 
 * [HTML](https://jacobmpeterson.com/cv)
@@ -26,5 +29,5 @@ Or if you want a shorter version that showcases my skills check out my **resume*
 * [PDF](https://jacobmpeterson.com/resume.pdf)
 
 
-Both are created with the `pagedown` package in **R** and the source code is contained in a public repository on my **GitHub** [here](https://github.com/jacpete/Resume_CV).
+Both are created with the [`pagedown`](https://github.com/rstudio/pagedown) package in **R** and the source code is contained in a public repository on my **GitHub** [here](https://github.com/jacpete/Resume_CV).
 

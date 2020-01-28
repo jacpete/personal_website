@@ -43,6 +43,7 @@ output:
 
 ## edited site_footer.html
 *	commented out privacy policy and terms
+* added link to GitHub Repo
 
 ## script to update data from other repos
 
@@ -81,4 +82,6 @@ to
 * create term_cloud.html as a partial controlling the tag cloud
 * mostly copied form one source but had to edit it to get the sizing to happen automatically
 * added partial call to blog.html
+
+## add landing page for cv and resume with link from bio
 
