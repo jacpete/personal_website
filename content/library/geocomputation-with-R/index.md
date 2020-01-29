@@ -23,8 +23,7 @@ abstract: "Geocomputation with R is for people who want to analyze, visualize an
 # Summary. An optional shortened abstract.
 summary: I wish this book had been written when I was first exploring spatial analysis in R.
 
-tags:
-- Open Source
+library_tags:
 - Free to Read
 - R
 - GIS

@@ -23,8 +23,7 @@ Ideal for developers, data scientists, and programmers with various backgrounds,
 # Summary. An optional shortened abstract.
 summary: Describes the best practices for package creation in R.
 
-tags:
-- Open Source
+library_tags:
 - Free to Read
 - R
 
