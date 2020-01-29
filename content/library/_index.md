@@ -17,4 +17,4 @@ header:
 
 <h1 class="customHeading"> My Personal Library </h1>
 
-<h2 class="customHeading"> Books I Recommend</h2>
+<h2 class="customHeading"> Books I Recommend and Use</h2>
