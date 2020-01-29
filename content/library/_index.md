@@ -7,7 +7,7 @@ title:
 #   3 = Card
 #   4 = Citation
 #   5 = Custom Library List
-view: 2
+view: 5
 
 # Optional header image (relative to `static/img/` folder).
 header:

@@ -18,6 +18,9 @@
 {{ else if eq $item.Type "project" }}
   {{ $show_authors_only = true }}
   {{ $show_buttons = true }}
+{{ else if eq $item.Type "library" }}
+  {{ $show_authors_only = true }}
+  {{ $show_buttons = true }}
 {{ end }}
 
 {{/* Get summary. */}}
@@ -59,7 +62,7 @@
 
       {{ if and $show_authors_only $item.Params.authors }}
       <div>
-        {{ partial "page_metadata_authors" $item }}
+        {{ partial "library/page_metadata_authors" $item }}
       </div>
       {{ else if not $show_authors_only }}
         {{ partial "page_metadata" (dict "page" $item "is_list" 1) }}
