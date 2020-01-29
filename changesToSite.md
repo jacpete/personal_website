@@ -111,6 +111,7 @@ to
     - index.md (where metadata and content is)
     - cite.bib (bibtex citation for the book)
   - in the main folder add \_index.md and add page titles
+* copy /themes/academic/layouts/publication/single.html to /layouts/library/single.html
 * copy /themes/academic/layouts/section/publication.html and rename /layouts/library/library.html
 * copy over /themes/academic/layouts/partials/li_card.html and rename to /layouts/partials/li_librarycard.html  
 * copy over /themes/academic/layouts/partials/li_list.html and rename to /layouts/partials/li_librarylist.html
