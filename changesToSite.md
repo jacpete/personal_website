@@ -118,6 +118,12 @@ to
 * change library.html to reflect the change in partial names
 * To Do:
   - customize one of the partials to be a mix of the two
+    - picture on left
+    - border around box
+    - remove last updated
+  - customize search
+    - replace type with tags
+   
 
 
 
