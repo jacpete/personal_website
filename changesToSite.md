@@ -99,3 +99,7 @@ to
   - /themes/academic/layouts/partials/page_footer.html to /layouts/blog and rename as blog_footer.html
 * customize article-tags class spacing with css
 
+## remove skills
+
+## change color theme to dark and update primary color
+
