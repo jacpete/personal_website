@@ -93,7 +93,7 @@ to
 * needs to 512x512px
 
 ## create custom blog post layout
-* copy files: 
+* copy files:
   - /themes/academic/layouts/\_default/single.html to /layouts/blog/single.html
   - /themes/academic/layouts/partials/page_header.html to /layouts/blog and rename as blog_header.html
   - /themes/academic/layouts/partials/page_footer.html to /layouts/blog and rename as blog_footer.html
@@ -102,4 +102,23 @@ to
 ## remove skills
 
 ## change color theme to dark and update primary color
+
+## Create library page
+* create library folder in content
+* copy over data from publication content in example site
+  - folder for each book containing:
+    - featured.png (cover)
+    - index.md (where metadata and content is)
+    - cite.bib (bibtex citation for the book)
+  - in the main folder add \_index.md and add page titles
+* copy /themes/academic/layouts/section/publication.html and rename /layouts/library/library.html
+* copy over /themes/academic/layouts/partials/li_card.html and rename to /layouts/partials/li_librarycard.html  
+* copy over /themes/academic/layouts/partials/li_list.html and rename to /layouts/partials/li_librarylist.html
+* change library.html to reflect the change in partial names
+* To Do:
+  - customize one of the partials to be a mix of the two
+
+
+
+
 
