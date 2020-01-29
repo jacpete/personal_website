@@ -6,6 +6,7 @@ title:
 #   2 = Compact
 #   3 = Card
 #   4 = Citation
+#   5 = Custom Library List
 view: 2
 
 # Optional header image (relative to `static/img/` folder).
