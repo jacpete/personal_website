@@ -31,6 +31,8 @@ tags:
 
 featured: false
 
+type: "publication"
+
 links:
  - name: "Read Online"
    url: "https://geocompr.robinlovelace.net/"
@@ -66,6 +68,6 @@ projects: []
 #   Simply enter your slide deck's filename without extension.
 #   E.g. `slides: "example"` references `content/slides/example/index.md`.
 #   Otherwise, set `slides: ""`.
-slides: example
+slides: ""
 ---
 
