@@ -112,10 +112,9 @@ to
     - cite.bib (bibtex citation for the book)
   - in the main folder add \_index.md and add page titles
 * copy /themes/academic/layouts/publication/single.html to /layouts/library/single.html
-* copy /themes/academic/layouts/section/publication.html and rename /layouts/library/library.html
-* copy over /themes/academic/layouts/partials/li_card.html and rename to /layouts/partials/li_librarycard.html  
-* copy over /themes/academic/layouts/partials/li_list.html and rename to /layouts/partials/li_librarylist.html
-* change library.html to reflect the change in partial names
+* copy /themes/academic/layouts/section/publication.html and rename /layouts/library/library.html 
+* copy over /themes/academic/layouts/partials/li_compact.html and rename to /layouts/partials/library/li_librarycustomcompact.html
+* change library.html to reflect the change in partial names and add 5th option for the custom one
 * To Do:
   - customize one of the partials to be a mix of the two
     - picture on left
@@ -123,7 +122,7 @@ to
     - remove last updated
   - customize search
     - replace type with tags
-   
+
 
 
 
