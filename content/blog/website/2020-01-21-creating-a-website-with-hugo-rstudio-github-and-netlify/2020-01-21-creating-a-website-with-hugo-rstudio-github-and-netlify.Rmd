@@ -20,7 +20,7 @@ image:
   caption: ''
   focal_point: ''
   preview_only: no
-projects: [website]
+projects: []
 draft: false
 output:
   blogdown::html_page:
