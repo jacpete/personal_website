@@ -29,8 +29,6 @@ library_tags:
 
 featured: false
 
-type: "publication"
-
 links:
  - name: "Read Online"
    url: "http://r-pkgs.had.co.nz/"
