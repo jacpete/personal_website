@@ -84,16 +84,20 @@ ul.pagination {
 // cv-resume Widget Settings
 // ######################
 
-.cvWidget p, ul {
+#cv-resume.cvWidget p, ul {
   margin-left: 30px;
 }
 
-.cvWidget a {
-  color: #2962ff !important;
+#cv-resume.cvWidget a {
+  color: #2962ff;
 }
 
-.cvWidget h1 {
-  color: #98a6ad !important;
+#cv-resume.cvWidget a:hover {
+    color: #003adc; //force color change during hover
+}
+
+#cv-resume.cvWidget h1 {
+  color: #98a6ad;
 }
 
 // ######################

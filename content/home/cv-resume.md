@@ -58,13 +58,13 @@ subtitle = ""
 
 You can view my full **CV** below.
 
-* [HTML version](https://jacobmpeterson.com/cv)
-* [PDF](https://jacobmpeterson.com/cv.pdf)
+* [<i class="fas fa-desktop"></i>&nbsp; HTML](https://jacobmpeterson.com/cv)
+* [<i class="fas fa-file-download"></i>&nbsp; PDF](https://jacobmpeterson.com/cv.pdf)
 
 Or if you want a shorter version that showcases my skills check out my **resume**.
 
-* [HTML version](https://jacobmpeterson.com/resume)
-* [PDF](https://jacobmpeterson.com/resume.pdf)
+* [<i class="fas fa-desktop"></i>&nbsp; HTML](https://jacobmpeterson.com/resume)
+* [<i class="fas fa-file-download"></i>&nbsp; PDF](https://jacobmpeterson.com/resume.pdf)
 
 
 Both are created with the [pagedown](https://github.com/rstudio/pagedown) package in **R** and the source code is contained in a public repository on my [**GitHub**](https://github.com/jacpete/Resume_CV).
