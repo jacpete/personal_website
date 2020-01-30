@@ -81,7 +81,7 @@ privacy_pack = false
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
-email = "JacobPetersonMSc@gmail.com"
+email = ""
 phone = ""
 
 # Address
@@ -105,6 +105,7 @@ phone = ""
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
 contact_links = [
+  {icon = "envelope", icon_pack = "fas", name = "JacobPetersonMSc@gmail.com", link = "mailto:jacobpetersonmsc@gmail.com"},
   {icon = "github", icon_pack = "fab", name = "github.com/jacpete", link = "https://github.com/jacpete"},
   {icon = "twitter", icon_pack = "fab", name = "@PetersonJacobM", link = "https://twitter.com/PetersonJacobM"},
   #{icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
