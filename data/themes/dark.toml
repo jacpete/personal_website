@@ -9,13 +9,13 @@ primary = "#2962ff" #blue
 
 # Menu
 # menu_primary = "rgb(20, 22, 34)" #dark blue basically black
-menu_primary = "hsla(129, 6%, 7%, 1)" #dark blue basically black
+menu_primary = "hsla(129, 6%, 7%, 1)" #dark green basically black
 menu_text = "rgba(255,255,255,0.6)" #basically white
 menu_text_active = "rgba(255,255,255,1)"  #white
 menu_title = "#fff" #white
 
 # Home sections
 # home_section_odd = "hsla(231, 15%, 18%, 1)" #dark gray
-# home_section_even = "hsla(231, 15%, 16%, 1)" #dark gray
-home_section_odd = "hsla(129, 12%, 12%, 1)" #dark gray
-home_section_even = "hsla(129, 12%, 14%, 1)" #dark gray
+# home_section_even = "hsla(231, 15%, 16%, 1)" #dark gray slightly lighter
+home_section_odd = "hsla(129, 12%, 12%, 1)" #dark green
+home_section_even = "hsla(129, 12%, 14%, 1)" #dark green slightly lighter

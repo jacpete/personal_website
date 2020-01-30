@@ -98,13 +98,17 @@ ul.pagination {
 
 // ######################
 // Background Color Settings
+// Color copied from home_section_* in data/themes/dark.tomld
 // ######################
+
+//Page backgrounds
 .dark {
+  // background-color: hsla(129, 12%, 14%, 1) !important;
   background-color: hsla(129, 12%, 14%, 1) !important;
 }
 
-
-
-
-
+//Backgrounds for Blog card, Drop downs in library, Search in library, Project Card
+.dark .card-simple,  .dark .form-control, .dark input, .dark .card {
+  background-color: hsla(129, 12%, 12%, 1) !important;
+}
 
