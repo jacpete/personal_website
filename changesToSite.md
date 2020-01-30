@@ -88,6 +88,7 @@ to
 
 ## add landing page for cv and resume with link from bio
 * fill in page with links to cv and resume in different forms
+* **Actually changed to a home widget**
 
 ## add custom icon to /assets/images/icon.png
 * needs to 512x512px
@@ -112,7 +113,7 @@ to
     - cite.bib (bibtex citation for the book)
   - in the main folder add \_index.md and add page titles
 * copy /themes/academic/layouts/publication/single.html to /layouts/library/single.html
-* copy /themes/academic/layouts/section/publication.html and rename /layouts/library/library.html 
+* copy /themes/academic/layouts/section/publication.html and rename /layouts/library/library.html
 * copy over /themes/academic/layouts/partials/li_compact.html and rename to /layouts/partials/library/li_librarycustomcompact.html
 * change library.html to reflect the change in partial names and add 5th option for the custom one
 * To Do:

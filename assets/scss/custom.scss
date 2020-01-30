@@ -84,6 +84,9 @@ ul.pagination {
 // cv-resume Widget Settings
 // ######################
 
+.cvWidget p, ul {
+  margin-left: 30px;
+}
 
 .cvWidget a {
   color: #2962ff !important;
@@ -91,7 +94,6 @@ ul.pagination {
 
 .cvWidget h1 {
   color: #98a6ad !important;
-  text-align: center;
 }
 
 
