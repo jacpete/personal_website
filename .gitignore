@@ -5,3 +5,4 @@ resources/
 public/
 .Rproj.user
 .~lock.update_files_from_other_repos.csv#
+.Rhistory
