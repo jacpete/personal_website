@@ -56,9 +56,7 @@ All the software needed can be installed across all major operating systems (Lin
 
 ## Suggested Reading
 
-A lot of what I learned to complete my website build came from the [blogdown book](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://yihui.org), [Amber Thomas](https://amber.rbind.io), and [Alison Presmanes Hill](https://alison.rbind.io) on creating a website in RStudio using the `blogdown` R package. It has an entire chapter dedicated to introducing new users to **Hugo** and discusses how to deploy your site using **Netlify**.
-
-
+A lot of what I learned to complete my website build came from the [blogdown book](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://yihui.org), [Amber Thomas](https://amber.rbind.io), and [Alison Presmanes Hill](https://alison.rbind.io) on creating a website in RStudio using the `blogdown` R package. It has an entire chapter dedicated to introducing new users to **Hugo** and discusses how to deploy your site using **Netlify**.  
 
 # Getting Started
 
@@ -114,17 +112,12 @@ But where is this data all stored? It deploys from the GitHub repository that yo
 
 ## Setting up RStudio with a Local Repository
 
-Now that you have a basic website deployed, you need a way to edit it. **RStudio** and the `blogdown` package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, check out these guides for a quick introduction:
-
- * Add guides
- * And links
- * Here
+Now that you have a basic website deployed, you need a way to edit it. **RStudio** and the `blogdown` package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, it may be helpful to read up on it a little bit as that is out of the scope of this blog post.
 
 ### Cloning the Repository
 
-This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using RStudio and you can find a tutorial on how to complete this [here](https://www.jacobmpeterson.com/blog/using-rstudio-with-github/).
+This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using RStudio and you can find a tutorial on how to complete this [here](/blog/using-rstudio-with-github/).
 
-**Need to add link here**
 
 To add a new GitHub project, go to the project drop down on the top-right corner of your RStudio window and click *New Project*
 
@@ -145,6 +138,10 @@ Congratulations you now have a local version of your website repository that you
 
 ### Installing Dependencies
 
+Now that your website is in a local folder on your computer, it is time to finish installing all the other local dependencies that you will need to make editing your website easier.
+
+\  
+
 #### `blogdown` package
 
 Install the blogdown package with the following code in RStudio.
@@ -157,6 +154,8 @@ This package provides helpful functions and add-ins that will make editing your 
 
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/blogdownAddins.png)
 <p align="center">blogdown Add-ins</p>
+
+\  
 
 
 #### Hugo
@@ -177,9 +176,12 @@ Then specify which version of Hugo you want to install.
 blogdown::install_hugo(version = "0.60.1")
 ```
 
+\  
+
+
 #### Academic Theme for Hugo
 
-The Academic theme is attached to the repo using a git submodule. To add local access go to a terminal and type the following commands:
+The Academic theme is attached to the repo using a git submodule. To add local access go to a terminal (like the one built into RStudio using the *Terminal* tab next to the *Console*) and type the following commands:
 
 ```{bash bash-script}
 #Enter the working directory for the project
@@ -192,13 +194,66 @@ git submodule update --init --recursive
 
 
 
+\  
+\  
 
 # Customizing the Website
 
+Now you have all the tools you should need to start customizing your own personal website.
+This customization can be as simple filling in your information and rearranging the home page to act your personal online business card, or involve heavy customization of themes and multipage navigation. For the purpose of this blog post, I will only run through the important details to get you a functioning personalized one page website, but check out my [other blog posts](/categories/website/) where I go into detail on how I customized my own site.  
+  
+
+## config.toml
+
+* title = "Jacob Peterson"
+* copyright = "&copy; Jacob Peterson, 2020"
+* theme = "academic"
+* enableGitInfo = true
 
 
 
 
+
+
+## menus.toml
+
+* site_type = "person"
+* highlight = true
+* highlight_languages = ["r","bash","css"]  # Add support for highlighting additional languages
+* highlight_style = "atom-one-dark"
+* math = true
+* add email
+* main_menu = {align = "r", show_logo = true}
+
+## config.toml
+
+* title = "Jacob Peterson"
+* copyright = "&copy; Jacob Peterson, 2020"
+* theme = "academic"
+* enableGitInfo = true
+
+## Set specific blogdown options with .Rprofile
+* default to .Rmd
+* author name
+
+## Edit Authors \_index.md
+
+## Edit files in home folder to specify what widgets are shown
+
+## copied post and made a blog duplicate
+* blogs.md
+* menu.toml
+
+## edit menu.toml to include tabs and links I want
+
+
+
+
+
+
+
+\  
+\  
 
 # Additional Support
 

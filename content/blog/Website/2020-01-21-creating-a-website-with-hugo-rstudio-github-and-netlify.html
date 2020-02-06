@@ -41,7 +41,16 @@ output:
 <li><a href="#installing-dependencies">Installing Dependencies</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#customizing-the-website">Customizing the Website</a></li>
+<li><a href="#customizing-the-website">Customizing the Website</a><ul>
+<li><a href="#config.toml">config.toml</a></li>
+<li><a href="#menus.toml">menus.toml</a></li>
+<li><a href="#config.toml-1">config.toml</a></li>
+<li><a href="#set-specific-blogdown-options-with-.rprofile">Set specific blogdown options with .Rprofile</a></li>
+<li><a href="#edit-authors-_index.md">Edit Authors _index.md</a></li>
+<li><a href="#edit-files-in-home-folder-to-specify-what-widgets-are-shown">Edit files in home folder to specify what widgets are shown</a></li>
+<li><a href="#copied-post-and-made-a-blog-duplicate">copied post and made a blog duplicate</a></li>
+<li><a href="#edit-menu.toml-to-include-tabs-and-links-i-want">edit menu.toml to include tabs and links I want</a></li>
+</ul></li>
 <li><a href="#additional-support">Additional Support</a></li>
 </ul>
 </div>
@@ -100,16 +109,10 @@ Netlify makes this easy as well.</p>
 </div>
 <div id="setting-up-rstudio-with-a-local-repository" class="section level2">
 <h2>Setting up RStudio with a Local Repository</h2>
-<p>Now that you have a basic website deployed, you need a way to edit it. <strong>RStudio</strong> and the <code>blogdown</code> package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, check out these guides for a quick introduction:</p>
-<ul>
-<li>Add guides</li>
-<li>And links</li>
-<li>Here</li>
-</ul>
+<p>Now that you have a basic website deployed, you need a way to edit it. <strong>RStudio</strong> and the <code>blogdown</code> package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, it may be helpful to read up on it a little bit as that is out of the scope of this blog post.</p>
 <div id="cloning-the-repository" class="section level3">
 <h3>Cloning the Repository</h3>
-<p>This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using RStudio and you can find a tutorial on how to complete this <a href="https://www.jacobmpeterson.com/blog/using-rstudio-with-github/">here</a>.</p>
-<p><strong>Need to add link here</strong></p>
+<p>This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using RStudio and you can find a tutorial on how to complete this <a href="/blog/using-rstudio-with-github/">here</a>.</p>
 <p>To add a new GitHub project, go to the project drop down on the top-right corner of your RStudio window and click <em>New Project</em></p>
 <p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject1.png" /></p>
 <p>This opens a new window with a few options. Because you are hosting your website in a GitHub repository we are inherently using version control with <strong>Git</strong>. Confirm that your choices in the next two windows reflect that.</p>
@@ -122,6 +125,8 @@ The repo will then clone itself into the new directory and open up as an RStudio
 </div>
 <div id="installing-dependencies" class="section level3">
 <h3>Installing Dependencies</h3>
+<p>Now that your website is in a local folder on your computer, it is time to finish installing all the other local dependencies that you will need to make editing your website easier.</p>
+<p> </p>
 <div id="blogdown-package" class="section level4">
 <h4><code>blogdown</code> package</h4>
 <p>Install the blogdown package with the following code in RStudio.</p>
@@ -131,6 +136,7 @@ The repo will then clone itself into the new directory and open up as an RStudio
 <p align="center">
 blogdown Add-ins
 </p>
+<p> </p>
 </div>
 <div id="hugo" class="section level4">
 <h4>Hugo</h4>
@@ -140,21 +146,81 @@ blogdown Add-ins
 <p><img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/netlifyHugoVersion.png" /></p>
 <p>Then specify which version of Hugo you want to install.</p>
 <pre class="r"><code>blogdown::install_hugo(version = &quot;0.60.1&quot;)</code></pre>
+<p> </p>
 </div>
 <div id="academic-theme-for-hugo" class="section level4">
 <h4>Academic Theme for Hugo</h4>
-<p>The Academic theme is attached to the repo using a git submodule. To add local access go to a terminal and type the following commands:</p>
+<p>The Academic theme is attached to the repo using a git submodule. To add local access go to a terminal (like the one built into RStudio using the <em>Terminal</em> tab next to the <em>Console</em>) and type the following commands:</p>
 <pre class="bash"><code>#Enter the working directory for the project
 cd ~/GitHub/personal_website
 
 #Download git submodules within your project
 git submodule update --init --recursive</code></pre>
+<p> 
+ </p>
 </div>
 </div>
 </div>
 </div>
 <div id="customizing-the-website" class="section level1">
 <h1>Customizing the Website</h1>
+<p>Now you have all the tools you should need to start customizing your own personal website.
+This customization can be as simple filling in your information and rearranging the home page to act your personal online business card, or involve heavy customization of themes and multipage navigation. For the purpose of this blog post, I will only run through the important details to get you a functioning personalized one page website, but check out my <a href="/categories/website/">other blog posts</a> where I go into detail on how I customized my own site.</p>
+<div id="config.toml" class="section level2">
+<h2>config.toml</h2>
+<ul>
+<li>title = “Jacob Peterson”</li>
+<li>copyright = “© Jacob Peterson, 2020”</li>
+<li>theme = “academic”</li>
+<li>enableGitInfo = true</li>
+</ul>
+</div>
+<div id="menus.toml" class="section level2">
+<h2>menus.toml</h2>
+<ul>
+<li>site_type = “person”</li>
+<li>highlight = true</li>
+<li>highlight_languages = [“r”,“bash”,“css”] # Add support for highlighting additional languages</li>
+<li>highlight_style = “atom-one-dark”</li>
+<li>math = true</li>
+<li>add email</li>
+<li>main_menu = {align = “r”, show_logo = true}</li>
+</ul>
+</div>
+<div id="config.toml-1" class="section level2">
+<h2>config.toml</h2>
+<ul>
+<li>title = “Jacob Peterson”</li>
+<li>copyright = “© Jacob Peterson, 2020”</li>
+<li>theme = “academic”</li>
+<li>enableGitInfo = true</li>
+</ul>
+</div>
+<div id="set-specific-blogdown-options-with-.rprofile" class="section level2">
+<h2>Set specific blogdown options with .Rprofile</h2>
+<ul>
+<li>default to .Rmd</li>
+<li>author name</li>
+</ul>
+</div>
+<div id="edit-authors-_index.md" class="section level2">
+<h2>Edit Authors _index.md</h2>
+</div>
+<div id="edit-files-in-home-folder-to-specify-what-widgets-are-shown" class="section level2">
+<h2>Edit files in home folder to specify what widgets are shown</h2>
+</div>
+<div id="copied-post-and-made-a-blog-duplicate" class="section level2">
+<h2>copied post and made a blog duplicate</h2>
+<ul>
+<li>blogs.md</li>
+<li>menu.toml</li>
+</ul>
+</div>
+<div id="edit-menu.toml-to-include-tabs-and-links-i-want" class="section level2">
+<h2>edit menu.toml to include tabs and links I want</h2>
+<p> 
+ </p>
+</div>
 </div>
 <div id="additional-support" class="section level1">
 <h1>Additional Support</h1>
