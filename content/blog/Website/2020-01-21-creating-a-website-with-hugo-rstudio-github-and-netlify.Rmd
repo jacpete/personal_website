@@ -122,7 +122,7 @@ Now that you have a basic website deployed, you need a way to edit it. **RStudio
 
 ### Cloning the Repository
 
-This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using RStudio and you can find a tutorial on how to complete this [here]().
+This tutorial assumes you have set up SSH authentication between your computer and GitHub. This is easily done using RStudio and you can find a tutorial on how to complete this [here](https://www.jacobmpeterson.com/blog/using-rstudio-with-github/).
 
 **Need to add link here**
 
