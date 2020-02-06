@@ -1,0 +1,81 @@
+---
+title: Atom Customization's
+author: Jacob Peterson
+date: '2020-02-03'
+slug: atom-customizations
+categories:
+  - Personal Configuration
+tags:
+  - Atom Text Editor
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-02-05T23:52:01-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+draft: true
+output:
+  blogdown::html_page:
+    toc: yes
+---
+
+```{r, include=FALSE, echo=FALSE, eval=TRUE}
+knitr::opts_chunk$set(echo=TRUE, eval=FALSE)
+```
+
+
+# Introduction
+
+This is what I am going to teach
+
+
+## Software Requirements
+
+All the software needed can be installed across all major operating systems (Linux, macOS X, and Microsoft Windows).
+
+* **Atom Text Editor** -
+
+# Settings
+
+You can get to the settings by going to **File** &rarr; **Settings** on a Windows computer or **Edit**  &rarr; **Preferences** on a Unix computer.
+
+### Core
+* Uncheck *'Open Empty Editor On Start'*
+* Set default *'Project Home'*
+* Set *'Restore Previous Windows On Start'* to *'always'*
+
+### Install
+
+Install the following packages:
+
+* project-plus
+* atom-language-r
+* atom-beautify
+
+### Packages
+
+#### Autocomplete Plus
+* Change *'Keymap For Confirming A Suggestion'* to *'tab always, enter when suggestion explicitly selected'*
+
+#### Spell Check
+* Check Add Known Words
+* Enable Spell Check for .Rmd files:
+  - *From README:* To enable Spell Check for your current file type: put your cursor in the file, open the Command Palette (cmd-shift-p), and run the Editor: Log Cursor Scope command. This will trigger a notification which will contain a list of scopes. The first scope that's listed is the one you should add to the list of scopes in the settings for the Spell Check package.
+  - Add *'source.gfm.rmd'* to *'Grammers*'
+
+
+#### Markdown Preview
+* Add *'source.gfm.rmd'* to *'Grammers*'
+
+
+#### Whitespace
+* Uncheck '*Ensure Singe Trailing Newline*'
+
+
+## Suggested Reading
+
+

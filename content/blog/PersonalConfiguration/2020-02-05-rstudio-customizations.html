@@ -1,0 +1,142 @@
+---
+title: RStudio Customization's
+author: Jacob Peterson
+date: '2020-02-03'
+slug: rstudio-customizations
+categories:
+  - R
+  - Personal Configuration
+tags:
+  - RStudio
+subtitle: ''
+summary: 'This is my quick summary'
+authors: []
+lastmod: '2020-02-05T23:48:12-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+draft: true
+output:
+  blogdown::html_page:
+    toc: yes
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#why-i-use-github">Why I use GitHub</a></li>
+<li><a href="#software-requirements">Software Requirements</a></li>
+</ul></li>
+<li><a href="#global-options">Global Options</a><ul>
+<li><a href="#general-basic">General → Basic</a></li>
+<li><a href="#code-display">Code → Display</a></li>
+<li><a href="#code-saving">Code → Saving</a></li>
+<li><a href="#appearance">Appearance</a></li>
+<li><a href="#gitsvn">Git/SVN</a></li>
+</ul></li>
+<li><a href="#install-packages">Install Packages</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This is what I am going to teach</p>
+<div id="why-i-use-github" class="section level2">
+<h2>Why I use GitHub</h2>
+<p>Description</p>
+</div>
+<div id="software-requirements" class="section level2">
+<h2>Software Requirements</h2>
+<p>All the software needed can be installed across all major operating systems (Linux, macOS X, and Microsoft Windows).</p>
+<ul>
+<li><p><strong>R</strong> - 3.6.2</p></li>
+<li><p><strong>RStudio</strong> - 1.3.776</p></li>
+</ul>
+</div>
+</div>
+<div id="global-options" class="section level1">
+<h1>Global Options</h1>
+<p>Access the global options menu with <strong>Tools</strong> → <strong>Global Options…</strong></p>
+<div id="general-basic" class="section level3">
+<h3>General → Basic</h3>
+<ul>
+<li>Uncheck <em>‘Restore .RData into workspace at startup’</em></li>
+<li>Change <em>‘Save workspace to .RData on exit’</em> to <em>‘Never’</em></li>
+</ul>
+</div>
+<div id="code-display" class="section level3">
+<h3>Code → Display</h3>
+<ul>
+<li>Check ‘<em>Show line numbers</em>’</li>
+<li>Check ‘<em>Show margin</em>’</li>
+</ul>
+</div>
+<div id="code-saving" class="section level3">
+<h3>Code → Saving</h3>
+<ul>
+<li>Change ’<em>Line dending conversion:’</em> to <em>‘Posix (LF)’</em> to annoying whitespace errors switching between Windows and Unix computers</li>
+</ul>
+</div>
+<div id="appearance" class="section level3">
+<h3>Appearance</h3>
+<p>I found a neat package that has a lot of themes including the One Dark theme I use from the Atom Text Editor. Find it on GitHub at <a href="https://github.com/gadenbuie/rsthemes">gadenbuie/rsthemes</a>.</p>
+<p>I found that you can edit the theme using the Rstudio API.</p>
+<pre class="r"><code>#Install the package
+devtools::install_github(&quot;gadenbuie/rsthemes&quot;)
+
+
+#Install the themes
+rsthemes::install_rsthemes()
+
+#Apply the One Dark Theme
+rstudioapi::applyTheme(&quot;One Dark {rsthemes}&quot;)</code></pre>
+</div>
+<div id="gitsvn" class="section level3">
+<h3>Git/SVN</h3>
+<p>Check out my post on how to setup GitHub with RStudio <a href="">here</a></p>
+</div>
+</div>
+<div id="install-packages" class="section level1">
+<h1>Install Packages</h1>
+<pre class="bash"><code>sudo apt install default-jre default-jdk
+sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev
+sudo apt install gdal-bin python-gdal python3-gdal libgdal-dev
+sudo apt install libproj-dev libgeos-dev libcairo2-dev
+sudo apt install libudunits2-dev</code></pre>
+<pre class="bash"><code>sudo apt install texlive texlive-latex-extra lmodern</code></pre>
+<pre class="r"><code># Oracle Java JDK  https://thishosting.rocks/install-java-ubuntu/ (java 11 linux uprising ppa version)
+# install R (follow CRAN)
+# install Rstudio (deb from Rstudio website)
+# check if rJava will install might have to run: sudo R CMD javareconf
+
+# #Install R packages
+# install needed dependencies:
+# Java Oracle Java JDK  https://thishosting.rocks/install-java-ubuntu/ (java 11 linux uprising ppa version)
+# sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+# sudo apt install gdal-bin python-gdal python3-gdal libgdal1-dev libgdal-dev
+# sudo apt-get install libgdal1-dev libproj-dev libgeos-dev libcairo2-dev
+# sudo apt-get install libudunits2-dev
+# sudo apt-get install texlive texlive-latex-extra lmodern
+
+
+packList &lt;- c(&quot;lattice&quot;,&quot;sp&quot;,&quot;rgdal&quot;,&quot;rgeos&quot;,&quot;sf&quot;,&quot;data.table&quot;,
+              &quot;plyr&quot;,&quot;AICcmodavg&quot;,&quot;bbmle&quot;,&quot;devtools&quot;,
+              &quot;dismo&quot;,&quot;FactoMineR&quot;,&quot;fasterize&quot;,&quot;fields&quot;,
+              &quot;ggplotify&quot;,&quot;ggspatial&quot;,&quot;gtable&quot;,&quot;gridExtra&quot;,
+              &quot;maptools&quot;,&quot;reshape2&quot;,&quot;rJava&quot;,&quot;SDMTools&quot;,&quot;shiny&quot;,
+              &quot;spThin&quot;,&quot;survival&quot;,&quot;VGAM&quot;,&quot;raster&quot;,
+              &quot;tidyverse&quot;,&quot;tmap&quot;,&quot;tmaptools&quot;,&quot;devtools&quot;,&quot;captioner&quot;,
+              &quot;roxygen2&quot;,&quot;tidyverse&quot;,&quot;FNN&quot;,&quot;rmarkdown&quot;,&quot;blogdown&quot;,&quot;bookdown&quot;,
+              &quot;pagedown&quot;)
+
+install.packages(packList)
+
+
+#Personal Packages
+devtools::install_github(&quot;jacpete/jpfxns&quot;)
+devtools::install_github(&quot;jacpete/jpfxns2&quot;)</code></pre>
+</div>

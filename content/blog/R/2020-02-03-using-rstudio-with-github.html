@@ -1,0 +1,131 @@
+---
+title: Using RStudio with GitHub
+author: Jacob Peterson
+date: '2020-02-03'
+slug: using-rstudio-with-github
+categories: 
+  - R
+tags:
+  - R
+  - RStudio
+  - GitHub
+  - Microsoft Windows
+  - Ubuntu Linux
+subtitle: ''
+summary: 'This is my quick summary'
+authors: []
+lastmod: '2020-02-05T23:41:25-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+draft: true
+output:
+  blogdown::html_page:
+    toc: yes
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#why-i-use-github">Why I use GitHub</a></li>
+<li><a href="#software-requirements">Software Requirements</a></li>
+<li><a href="#suggested-reading">Suggested Reading</a></li>
+</ul></li>
+<li><a href="#install-git">Install Git</a><ul>
+<li><a href="#windows">Windows</a></li>
+<li><a href="#linux-ubuntu">Linux Ubuntu</a></li>
+</ul></li>
+<li><a href="#create-an-ssh-key-and-link-it-to-your-github-account">Create an SSH Key and link it to your GitHub account</a><ul>
+<li><a href="#set-up-your-git-global-identity-on-your-machine">Set up your Git global identity on your machine</a></li>
+</ul></li>
+<li><a href="#download-and-work-with-your-github-projects">Download and Work with your GitHub projects</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This is what I am going to teach</p>
+<p>Tutorial is focused towards installs on Ubuntu Linux and Microsoft Windows operating systems because that is what I primarily use. However, most instructions are the same across operating systems so a user of Mac OSX or other Linux distribution can follow along as well.</p>
+<div id="why-i-use-github" class="section level2">
+<h2>Why I use GitHub</h2>
+<p>Description</p>
+</div>
+<div id="software-requirements" class="section level2">
+<h2>Software Requirements</h2>
+<p>All the software needed can be installed across all major operating systems (Linux, macOS X, and Microsoft Windows).</p>
+<ul>
+<li><p><strong>R</strong> -</p></li>
+<li><p><strong>RStudio</strong> -</p></li>
+<li><p><strong>GitHub</strong> account</p></li>
+</ul>
+</div>
+<div id="suggested-reading" class="section level2">
+<h2>Suggested Reading</h2>
+</div>
+</div>
+<div id="install-git" class="section level1">
+<h1>Install Git</h1>
+<p>First you need to install Git to your computer. Depending on your operating system, you install in in different ways. You can find out what you need to do by going to the <a href="https://git-scm.com/download/">git downloads page</a>.</p>
+<p>PICTURE gitWebsiteDownload.png</p>
+<div id="windows" class="section level2">
+<h2>Windows</h2>
+<p>For a windows system. You download the exe installer file.</p>
+<p>PICTURE gitWebsiteWindowsDownload.png</p>
+<p>When running the installer, you can leave the default options or customize however you want.</p>
+<p>I changed:
+* The default editor to <code>Nano</code> as that is the text editor I am most comfortable with.
+* The line ending conversions to <em>‘Checkout as-is, commit Unix-style line endings’</em> as this makes my workflow on my dual booted computers easier.</p>
+<p><br />
+After installing <code>git</code>, open back up RStudio and go in the <strong>Git/SVN</strong> options in <strong>Tools</strong> → <strong>Global Options…</strong> → <strong>Git/SVN</strong></p>
+<p>PICTURE gitRStudio1.png</p>
+<p>Click <em>Browse</em> next to the <em>Git executable</em> section and browse to your install location for Git</p>
+<p>PICTURE gitRStudio2.png</p>
+<p>Mine was at default install location: “C:\Program Files\Git\bin\git.exe”.</p>
+</div>
+<div id="linux-ubuntu" class="section level2">
+<h2>Linux Ubuntu</h2>
+<p>For a system running Ubuntu Linux you install using <code>apt</code> with:</p>
+<pre class="bash"><code>sudo apt install git</code></pre>
+<p>PICTURE gitRStudio2_5.png</p>
+</div>
+</div>
+<div id="create-an-ssh-key-and-link-it-to-your-github-account" class="section level1">
+<h1>Create an SSH Key and link it to your GitHub account</h1>
+<p>Now that git is installed, go back into RStudio in the <strong>Git/SVN</strong> options at <strong>Tools</strong> → <strong>Global Options…</strong> → <strong>Git/SVN</strong> and click <em>‘Create RSA Key..’</em></p>
+<p>PICTURE gitRStudio3.png</p>
+<p>You can give the new key a paraphrase or leave it blank.</p>
+<p>After creating the Key, close the Create RSA Key window and click the new option <em>‘View public key’</em>. Copy this public key to your clipboard so you can add it to your GitHub account.</p>
+<p>PICTURE gitRStudio5.png</p>
+<p>Go to a browser and head to your <a href="https://github.com/settings/keys">GitHub account settings</a> and navigate to the <strong>SSH and GPG keys</strong>.
+Select <em>‘New SSH key’</em> and copy in the public key from your clipboard and save the key.</p>
+<p>PICTURE gitRStudio6.png</p>
+<div id="set-up-your-git-global-identity-on-your-machine" class="section level3">
+<h3>Set up your Git global identity on your machine</h3>
+<p>Finally, we need to set up your identity in git for your machine. This consists of your username and email address you use with GitHub.</p>
+<p>In RStudio click <strong>Tools</strong> → <strong>Shell</strong>, and a terminal or command prompt window will appear. Type the following commands replacing the <email> and <username> with your GitHub credentials.</p>
+<pre class="bash"><code>git config --global user.email &lt;email&gt;
+git config --global user.name &quot;&lt;username&gt;&quot;</code></pre>
+<p>They should run without error, but if you do run into a problem check your git installation. To check that they were set correctly, you can type the following commands in and they should return your information back to you.</p>
+<pre class="bash"><code>git config user.email
+git config user.name</code></pre>
+</div>
+</div>
+<div id="download-and-work-with-your-github-projects" class="section level1">
+<h1>Download and Work with your GitHub projects</h1>
+<p>Now you should be all set up and can start working with your GitHub projects within RStudio.</p>
+<p>You just need to checkout your git project and download a local copy.</p>
+<p>To add a new GitHub project, go to the project drop down on the top-right corner of your RStudio window and click <em>New Project</em></p>
+<p>PICTURE newProject1.png</p>
+<p>This opens a new window with a few options. Because you are hosting your website in a GitHub repository we are inherently using version control with <strong>Git</strong>. Confirm that your choices in the next two windows reflect that.</p>
+<p>PICTURE create project from website tutorial <img src="/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject2.png" /></p>
+<p>Finally retrieve the SSH clone URL for your repository from GitHub and copy it into the final New Project window in RStudio.
+Make sure it saves to the directory you want and click <em>Create Project</em>. The first time you connect to GitHub on a machine you will be asked to verify that the RSA fingerprint is okay. Just type <code>yes</code> in the popup and click enter. The repo will then clone itself into the new directory and open up as an RStudio project.</p>
+<p>May also get an error that states <em>‘error: unable to read askpass response from <code>rpostback-askpass</code>’’</em>. If you get this go to your terminal and run git push -u origin master and confirm your RSA fingerprint and try to install the package again.</p>
+<p>PICTURE newProject3.png</p>
+<p>Congratulations, you now have installed a local version one of your GitHub repositories using RStudio. You can now use the <strong>Git</strong> tab in the upper right pane to make commits, pull updates from your branch, and push new commits to the branch.</p>
+<p>PICTURE GitTab.png</p>
+</div>
