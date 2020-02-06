@@ -27,6 +27,11 @@ output:
     toc: true
 ---
 
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'hide', eval = FALSE)
+```
+
+
 # Introduction
 
 I have been thinking about creating a website for a few years to showcase the projects I am working on and create a blog where I can make my work more accessible to others.
@@ -47,7 +52,7 @@ All the software needed can be installed across all major operating systems (Lin
 
 * **R** and **RStudio** is optional and your website could be managed entirely without them, but the `blogdown` R package with RStudio Add-ins will make your life a lot easier and I use these programs in my instructions.
 
-* **Atom Text Editor** is optional but I use it when writing large text blocks for because it has spell check added in, while RStudio does not.
+* **Atom Text Editor** is optional but I use it when writing large text blocks for because it has spell check added in, while current versions of RStudio do not (that is changing in the upcoming release of RStudio 1.3).
 
 ## Suggested Reading
 
@@ -72,25 +77,25 @@ Change the Repository name to anything you want. I called mine `personal_website
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/websiteName.png)
 
 The best thing about creating your base website with this method, is that all the basic Netlify configuration is done for you and your website will deploy without effort on your part.
-A new page will load that contains your websites settings and its current randomly generated URL.
+A new page will load that contains your websites' settings and its current randomly generated URL.
 Mine here is `https://determined-allen-0ba60a.netlify.com`.
 
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialNetlify.png)
 
-If you click that link, you will be taken to your website.
+If you click that link, you will be taken to your website, which will look something like this.
 
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialWebsite.png)
 
 The next thing you may be wondering though is how to change the URL to your website from that crazy generated one.
 Netlify makes this easy as well.
 
-If you go back to the landing page for your websites settings you can click the site settings button under the URL that took you to your website. From there you can change your sub-domain with the change site name button.
+If you go back to the landing page for your websites' settings you can click the site settings button under the URL that took you to your website. From there you can change your sub-domain with the change site name button.
 
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/changeNetlifySubdomain2.png)
 
 Now you can use the updated custom sub-domain to get top your website.
 
-Additionally, you can set a custom domain name. Using the link labeled *Set up a custom domain* on the landing page for your websites settings. This allows you to use your own domain name you already own, or you can buy a domain through Netlify and they configure DNS settings and provide a security certificate for you.
+Additionally, you can set a custom domain name. Using the link labeled '*Set up a custom domain*' on the landing page for your websites settings. This allows you to use your own domain name you already own, or you can buy a domain through Netlify and they configure DNS settings and provide a security certificate for you.
 
 I personally don't know at the moment how difficult that is to manage yourself, so I chose the simplest solution and bought a domain name from Netlify.
 
@@ -109,7 +114,7 @@ But where is this data all stored? It deploys from the GitHub repository that yo
 
 ## Setting up RStudio with a Local Repository
 
-Now that you have a basic website deployed you need a way to edit it. **RStudio** and the `blogdown` package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, check out these guides for a quick introduction:
+Now that you have a basic website deployed, you need a way to edit it. **RStudio** and the `blogdown` package make this a much simpler process by providing an interface to interact with a GitHub hosted remote repository. If you have never worked with Git or GitHub before, check out these guides for a quick introduction:
 
  * Add guides
  * And links
@@ -143,9 +148,11 @@ Congratulations you now have a local version of your website repository that you
 #### `blogdown` package
 
 Install the blogdown package with the following code in RStudio.
-```{r Install-Blogdown, echo = TRUE, results = 'hide', eval = FALSE}
+
+```{r Install-Blogdown}
 install.packages('blogdown')
 ```
+
 This package provides helpful functions and add-ins that will make editing your website easier.
 
 ![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/blogdownAddins.png)
@@ -156,7 +163,7 @@ This package provides helpful functions and add-ins that will make editing your 
 
 Install the latest version of Hugo with:
 
-```{r Install-Hugo-latest, echo = TRUE, results = 'hide', eval = FALSE}
+```{r Install-Hugo-latest}
 blogdown::install_hugo()
 ```
 
@@ -166,7 +173,7 @@ However, you could also install the version of Hugo that Netlify is currently us
 
 Then specify which version of Hugo you want to install.
 
-```{r Install-Hugo-specific, echo = TRUE, results = 'hide', eval = FALSE}
+```{r Install-Hugo-specific}
 blogdown::install_hugo(version = "0.60.1")
 ```
 
@@ -174,9 +181,11 @@ blogdown::install_hugo(version = "0.60.1")
 
 The Academic theme is attached to the repo using a git submodule. To add local access go to a terminal and type the following commands:
 
-```{bash bash-script, results = 'hide', eval = FALSE}
+```{bash bash-script}
 #Enter the working directory for the project
 cd ~/GitHub/personal_website
+
+#Download git submodules within your project
 git submodule update --init --recursive
 ```
 
@@ -186,9 +195,6 @@ git submodule update --init --recursive
 
 # Customizing the Website
 
-```{r setup, include=FALSE, message=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 
 
