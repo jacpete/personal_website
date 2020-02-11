@@ -220,18 +220,35 @@ Located at '/config/_default/config.toml, I changed the following settings from 
 
 
 
+### params.toml
+Located at '/config/_default/params.toml, I changed the following settings from their default:
 
-
-
-## menus.toml
-
-* site_type = "person"
+* site_type = "Person"
+  - I chose person because this is a personal site, but look into the other options if you are making this site for a lab group, business or organization.
 * highlight = true
-* highlight_languages = ["r","bash","css"]  # Add support for highlighting additional languages
+  - Enables text highlighting in markdown code chunks
+* highlight_languages = ["r","bash","css"]
+  - Adds support for highlighting these specific languages. Many more can be added here. Add what you will use in your website and blog posts.
 * highlight_style = "atom-one-dark"
+  - Here you can change the highlight style for your code chunks. I use the 'One Dark' theme from atom a lot so I chose to include it in my website. Explore [cdnjs.com/libraries/highlight.js/](https://cdnjs.com/libraries/highlight.js/) for more choices.
 * math = true
-* add email
+  - I foresee myself using LaTex math on some of my pages and decided to enable it as a global option.
+* Comment out edit_page options to prevent visitors from editing pages
+* Contact Details: Fill them out with whatever information you want to include in the contact widget. Here is a screenshot of what mine looks like. 
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/paramsContact.png)
+I chose to not use the default email option so that I could have better control over how the link is set. If you want to use an email form, use the default email option. You may get an error if you set your email to a blank string stating: *'Please set an email address for the contact form using the `email` parameter in `params.toml`. Otherwise, set `email_form = 0` to disable the contact form.'* To fix this ensure the `email_form` option in the '/content/home/contact.md' file is set to 0.
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/paramsContact2.png)
 * main_menu = {align = "r", show_logo = true}
+  - I moved the main menu to the right side of my header for personal aesthetics. 
+
+
+## Edit Authors /authors/admin/_index.md
+
+
+
+### menu.toml
+Located at '/config/_default/menu.toml, this is where you change what widgets you want to display in your header.
+
 
 
 ## Set specific blogdown options with .Rprofile
@@ -250,7 +267,8 @@ Located at '/config/_default/config.toml, I changed the following settings from 
 
 
 
-
+## add custom icon to /assets/images/icon.png
+* needs to 512x512px
 
 
 

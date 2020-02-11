@@ -43,12 +43,16 @@ output:
 </ul></li>
 <li><a href="#customizing-the-website">Customizing the Website</a><ul>
 <li><a href="#config.toml">config.toml</a></li>
-<li><a href="#menus.toml">menus.toml</a></li>
+<li><a href="#params.toml">params.toml</a></li>
+<li><a href="#edit-authors-authorsadmin_index.md">Edit Authors /authors/admin/_index.md</a><ul>
+<li><a href="#menu.toml">menu.toml</a></li>
+</ul></li>
 <li><a href="#set-specific-blogdown-options-with-.rprofile">Set specific blogdown options with .Rprofile</a></li>
 <li><a href="#edit-authors-_index.md">Edit Authors _index.md</a></li>
 <li><a href="#edit-files-in-home-folder-to-specify-what-widgets-are-shown">Edit files in home folder to specify what widgets are shown</a></li>
 <li><a href="#copied-post-and-made-a-blog-duplicate">copied post and made a blog duplicate</a></li>
 <li><a href="#edit-menu.toml-to-include-tabs-and-links-i-want">edit menu.toml to include tabs and links I want</a></li>
+<li><a href="#add-custom-icon-to-assetsimagesicon.png">add custom icon to /assets/images/icon.png</a></li>
 </ul></li>
 <li><a href="#additional-support">Additional Support</a></li>
 </ul>
@@ -189,17 +193,47 @@ This customization can be as simple filling in your information and rearranging 
 </ul></li>
 </ul>
 </div>
-<div id="menus.toml" class="section level2">
-<h2>menus.toml</h2>
+<div id="params.toml" class="section level3">
+<h3>params.toml</h3>
+<p>Located at ’/config/_default/params.toml, I changed the following settings from their default:</p>
 <ul>
-<li>site_type = “person”</li>
-<li>highlight = true</li>
-<li>highlight_languages = [“r”,“bash”,“css”] # Add support for highlighting additional languages</li>
-<li>highlight_style = “atom-one-dark”</li>
-<li>math = true</li>
-<li>add email</li>
-<li>main_menu = {align = “r”, show_logo = true}</li>
+<li>site_type = “Person”
+<ul>
+<li>I chose person because this is a personal site, but look into the other options if you are making this site for a lab group, business or organization.</li>
+</ul></li>
+<li>highlight = true
+<ul>
+<li>Enables text highlighting in markdown code chunks</li>
+</ul></li>
+<li>highlight_languages = [“r”,“bash”,“css”]
+<ul>
+<li>Adds support for highlighting these specific languages. Many more can be added here. Add what you will use in your website and blog posts.</li>
+</ul></li>
+<li>highlight_style = “atom-one-dark”
+<ul>
+<li>Here you can change the highlight style for your code chunks. I use the ‘One Dark’ theme from atom a lot so I chose to include it in my website. Explore <a href="https://cdnjs.com/libraries/highlight.js/">cdnjs.com/libraries/highlight.js/</a> for more choices.</li>
+</ul></li>
+<li>math = true
+<ul>
+<li>I foresee myself using LaTex math on some of my pages and decided to enable it as a global option.</li>
+</ul></li>
+<li>Comment out edit_page options to prevent visitors from editing pages</li>
+<li>Contact Details: Fill them out with whatever information you want to include in the contact widget. Here is a screenshot of what mine looks like.
+<img src="/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/paramsContact.png" />
+I chose to not use the default email option so that I could have better control over how the link is set. If you want to use an email form, use the default email option. You may get an error if you set your email to a blank string stating: <em>‘Please set an email address for the contact form using the <code>email</code> parameter in <code>params.toml</code>. Otherwise, set <code>email_form = 0</code> to disable the contact form.’</em> To fix this ensure the <code>email_form</code> option in the ‘/content/home/contact.md’ file is set to 0.
+<img src="/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/paramsContact2.png" /></li>
+<li>main_menu = {align = “r”, show_logo = true}
+<ul>
+<li>I moved the main menu to the right side of my header for personal aesthetics.</li>
+</ul></li>
 </ul>
+</div>
+<div id="edit-authors-authorsadmin_index.md" class="section level2">
+<h2>Edit Authors /authors/admin/_index.md</h2>
+<div id="menu.toml" class="section level3">
+<h3>menu.toml</h3>
+<p>Located at ’/config/_default/menu.toml, this is where you change what widgets you want to display in your header.</p>
+</div>
 </div>
 <div id="set-specific-blogdown-options-with-.rprofile" class="section level2">
 <h2>Set specific blogdown options with .Rprofile</h2>
@@ -223,6 +257,12 @@ This customization can be as simple filling in your information and rearranging 
 </div>
 <div id="edit-menu.toml-to-include-tabs-and-links-i-want" class="section level2">
 <h2>edit menu.toml to include tabs and links I want</h2>
+</div>
+<div id="add-custom-icon-to-assetsimagesicon.png" class="section level2">
+<h2>add custom icon to /assets/images/icon.png</h2>
+<ul>
+<li>needs to 512x512px</li>
+</ul>
 <p> 
  </p>
 </div>
