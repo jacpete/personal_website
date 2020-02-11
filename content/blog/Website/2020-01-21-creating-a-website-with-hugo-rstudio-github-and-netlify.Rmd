@@ -12,7 +12,7 @@ tags:
   - GitHub
   - Academic
 subtitle: ''
-summary: 'This is my quick summary'
+summary: 'Learn how I got my website up and running using a combination of Hugo, RStudio, GitHub, and Netlify. This blogpost focuses on how to get a basic one-page website up and running with futher posts within my [website category](/categories/website) detailing the more intensive customizations.'
 authors: []
 lastmod: '2020-01-21T19:26:44-06:00'
 featured: no
