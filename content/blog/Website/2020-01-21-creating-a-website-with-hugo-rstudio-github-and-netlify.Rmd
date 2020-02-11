@@ -66,30 +66,30 @@ The Academic Hugo theme has a wonderful [help guide](https://sourcethemes.com/ac
 
 Follow the link to [Deploy and Academic Site with Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/sourcethemes/academic-kickstart).
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/netlifyDeploy.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/netlifyDeploy.png)
 
 Click on the Connect to GitHub link and login with your GitHub credentials.
 
 Change the Repository name to anything you want. I called mine `personal_website`. And click *Save and Deploy*.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/websiteName.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/websiteName.png)
 
 The best thing about creating your base website with this method, is that all the basic Netlify configuration is done for you and your website will deploy without effort on your part.
 A new page will load that contains your websites' settings and its current randomly generated URL.
 Mine here is `https://determined-allen-0ba60a.netlify.com`.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialNetlify.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialNetlify.png)
 
 If you click that link, you will be taken to your website, which will look something like this.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialWebsite.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialWebsite.png)
 
 The next thing you may be wondering though is how to change the URL to your website from that crazy generated one.
 Netlify makes this easy as well.
 
 If you go back to the landing page for your websites' settings you can click the site settings button under the URL that took you to your website. From there you can change your sub-domain with the change site name button.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/changeNetlifySubdomain2.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/changeNetlifySubdomain2.png)
 
 Now you can use the updated custom sub-domain to get top your website.
 
@@ -97,7 +97,7 @@ Additionally, you can set a custom domain name. Using the link labeled '*Set up 
 
 I personally don't know at the moment how difficult that is to manage yourself, so I chose the simplest solution and bought a domain name from Netlify.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/newDomain.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/newDomain.png)
 
 You now have a website with a nice custom URL that will be much easier for people looking for it to find or remember.
 
@@ -106,7 +106,7 @@ You now have a website with a nice custom URL that will be much easier for peopl
 
 But where is this data all stored? It deploys from the GitHub repository that you created. If you head on over to your GitHub, you will find the repository you named in the initial steps with all the data for your website.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialGithub.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/initialGithub.png)
 
 
 
@@ -121,17 +121,17 @@ This tutorial assumes you have set up SSH authentication between your computer a
 
 To add a new GitHub project, go to the project drop down on the top-right corner of your RStudio window and click *New Project*
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject1.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject1.png)
 
 This opens a new window with a few options. Because you are hosting your website in a GitHub repository we are inherently using version control with **Git**. Confirm that your choices in the next two windows reflect that.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject2.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject2.png)
 
 Finally retrive the SSH clone URL for your website repository from GitHub and copy it into the final New Project window in RStudio.
 Make sure it saves to the directory you want and click *Create Project*.
 The repo will then clone itself into the new directory and open up as an RStudio project.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject3.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/rstudioNewProject3.png)
 
 Congratulations you now have a local version of your website repository that you can customize.
 
@@ -152,7 +152,7 @@ install.packages('blogdown')
 
 This package provides helpful functions and add-ins that will make editing your website easier.
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/blogdownAddins.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/blogdownAddins.png)
 <p align="center">blogdown Add-ins</p>
 
 \  
@@ -168,7 +168,7 @@ blogdown::install_hugo()
 
 However, you could also install the version of Hugo that Netlify is currently using by checking the netlify.toml file from the root of your website repository:
 
-![](/blog/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/netlifyHugoVersion.png)
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/netlifyHugoVersion.png)
 
 Then specify which version of Hugo you want to install.
 
@@ -181,7 +181,7 @@ blogdown::install_hugo(version = "0.60.1")
 
 #### Academic Theme for Hugo
 
-The Academic theme is attached to the repo using a git submodule. To add local access go to a terminal (like the one built into RStudio using the *Terminal* tab next to the *Console*) and type the following commands:
+The Academic theme is attached to the repo using a git submodule. To add local access, go to a terminal (like the one built into RStudio using the *Terminal* tab next to the *Console*) and type the following commands:
 
 ```{bash bash-script}
 #Enter the working directory for the project
@@ -203,12 +203,19 @@ Now you have all the tools you should need to start customizing your own persona
 This customization can be as simple filling in your information and rearranging the home page to act your personal online business card, or involve heavy customization of themes and multipage navigation. For the purpose of this blog post, I will only run through the important details to get you a functioning personalized one page website, but check out my [other blog posts](/categories/website/) where I go into detail on how I customized my own site.  
   
 
-## config.toml
+#### config.toml
+
+Located at '/config/_default/config.toml, I changed the following settings from their default:
 
 * title = "Jacob Peterson"
+  - This changes the main title of your webpage in the browser tab and the left hand side of the navigation bar on the header.
+  ![Title](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/configTitle.png)
 * copyright = "&copy; Jacob Peterson, 2020"
+  - Adds a copyright notice to the footer of the website. If you want to display the current year in a date range like '2019-2020', insert '2019-{year}'.
 * theme = "academic"
+  - If you installed with this guide through the academic theme website, this should already be filled in correctly
 * enableGitInfo = true
+  - This enables the last modified date for posts to be filled in from GitHub automatically. 
 
 
 
