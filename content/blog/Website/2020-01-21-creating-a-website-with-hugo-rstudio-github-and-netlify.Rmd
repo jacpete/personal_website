@@ -203,7 +203,7 @@ Now you have all the tools you should need to start customizing your own persona
 This customization can be as simple filling in your information and rearranging the home page to act your personal online business card, or involve heavy customization of themes and multipage navigation. For the purpose of this blog post, I will only run through the important details to get you a functioning personalized one page website, but check out my [other blog posts](/categories/website/) where I go into detail on how I customized my own site.  
   
 
-#### config.toml
+### config.toml
 
 Located at '/config/_default/config.toml, I changed the following settings from their default:
 
@@ -212,6 +212,7 @@ Located at '/config/_default/config.toml, I changed the following settings from 
   ![Title](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/configTitle.png)
 * copyright = "&copy; Jacob Peterson, 2020"
   - Adds a copyright notice to the footer of the website. If you want to display the current year in a date range like '2019-2020', insert '2019-{year}'.
+  ![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/configCopyright.png)
 * theme = "academic"
   - If you installed with this guide through the academic theme website, this should already be filled in correctly
 * enableGitInfo = true
@@ -232,12 +233,6 @@ Located at '/config/_default/config.toml, I changed the following settings from 
 * add email
 * main_menu = {align = "r", show_logo = true}
 
-## config.toml
-
-* title = "Jacob Peterson"
-* copyright = "&copy; Jacob Peterson, 2020"
-* theme = "academic"
-* enableGitInfo = true
 
 ## Set specific blogdown options with .Rprofile
 * default to .Rmd

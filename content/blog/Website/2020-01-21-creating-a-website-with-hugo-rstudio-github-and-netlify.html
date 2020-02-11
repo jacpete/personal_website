@@ -42,8 +42,8 @@ output:
 </ul></li>
 </ul></li>
 <li><a href="#customizing-the-website">Customizing the Website</a><ul>
+<li><a href="#config.toml">config.toml</a></li>
 <li><a href="#menus.toml">menus.toml</a></li>
-<li><a href="#config.toml-1">config.toml</a></li>
 <li><a href="#set-specific-blogdown-options-with-.rprofile">Set specific blogdown options with .Rprofile</a></li>
 <li><a href="#edit-authors-_index.md">Edit Authors _index.md</a></li>
 <li><a href="#edit-files-in-home-folder-to-specify-what-widgets-are-shown">Edit files in home folder to specify what widgets are shown</a></li>
@@ -165,8 +165,8 @@ git submodule update --init --recursive</code></pre>
 <h1>Customizing the Website</h1>
 <p>Now you have all the tools you should need to start customizing your own personal website.
 This customization can be as simple filling in your information and rearranging the home page to act your personal online business card, or involve heavy customization of themes and multipage navigation. For the purpose of this blog post, I will only run through the important details to get you a functioning personalized one page website, but check out my <a href="/categories/website/">other blog posts</a> where I go into detail on how I customized my own site.</p>
-<div id="config.toml" class="section level4">
-<h4>config.toml</h4>
+<div id="config.toml" class="section level3">
+<h3>config.toml</h3>
 <p>Located at ’/config/_default/config.toml, I changed the following settings from their default:</p>
 <ul>
 <li>title = “Jacob Peterson”
@@ -176,7 +176,8 @@ This customization can be as simple filling in your information and rearranging 
 </ul></li>
 <li>copyright = “© Jacob Peterson, 2020”
 <ul>
-<li>Adds a copyright notice to the footer of the website. If you want to display the current year in a date range like ‘2019-2020’, insert ‘2019-{year}’.</li>
+<li>Adds a copyright notice to the footer of the website. If you want to display the current year in a date range like ‘2019-2020’, insert ‘2019-{year}’.
+<img src="/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/configCopyright.png" /></li>
 </ul></li>
 <li>theme = “academic”
 <ul>
@@ -198,15 +199,6 @@ This customization can be as simple filling in your information and rearranging 
 <li>math = true</li>
 <li>add email</li>
 <li>main_menu = {align = “r”, show_logo = true}</li>
-</ul>
-</div>
-<div id="config.toml-1" class="section level2">
-<h2>config.toml</h2>
-<ul>
-<li>title = “Jacob Peterson”</li>
-<li>copyright = “© Jacob Peterson, 2020”</li>
-<li>theme = “academic”</li>
-<li>enableGitInfo = true</li>
 </ul>
 </div>
 <div id="set-specific-blogdown-options-with-.rprofile" class="section level2">
