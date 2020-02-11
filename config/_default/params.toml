@@ -108,6 +108,7 @@ contact_links = [
   {icon = "envelope", icon_pack = "fas", name = "JacobPetersonMSc@gmail.com", link = "mailto:jacobpetersonmsc@gmail.com"},
   {icon = "github", icon_pack = "fab", name = "github.com/jacpete", link = "https://github.com/jacpete"},
   {icon = "twitter", icon_pack = "fab", name = "@PetersonJacobM", link = "https://twitter.com/PetersonJacobM"},
+  {icon = "cv", icon_pack = "ai", name = "CV and Resume", link = "#cv-resume"},
   #{icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
   #{icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
   #{icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},

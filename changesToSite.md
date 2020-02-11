@@ -17,21 +17,25 @@
 * theme = "academic"
 * enableGitInfo = true
 
-## Set specific blogdown options with .Rprofile
-* default to .Rmd
-* author name
+
 
 ## Edit Authors \_index.md
 
 ## Edit files in home folder to specify what widgets are shown
 
-## copied post and made a blog duplicate
-* blogs.md
-* menu.toml
+
 
 ## edit menu.toml to include tabs and links I want
 
 # Specialized
+
+## Set specific blogdown options with .Rprofile
+* default to .Rmd
+* author name
+
+## copied post and made a blog duplicate
+* blogs.md
+* menu.toml
 
 ## customize post archetype to be called blog-post
 

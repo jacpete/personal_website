@@ -1,7 +1,32 @@
 ---
+# Display name
+name: Jacob Peterson
+
+# Username (this should match the folder name)
 authors:
 - admin
+
+# Is this the primary user of the site?
+superuser: true
+
+# Role/position
+#role: Professor of Artificial Intelligence
+
+#organizations:
+#- name: Stanford University
+#  url: ""
+
+# Short bio (displayed in user profile at end of posts)
 bio: I enjoy transforming data into solutions. I am experienced in using using a combination of GIS and R to wrangle and analyze data.
+
+
+interests:
+- Data Science
+- GIS
+- Statistics
+- R Programming
+
+
 education:
   courses:
   - course: MSc in Applied Statistics and Analytics
@@ -13,17 +38,12 @@ education:
   - course: BSc in Fish, Wildlife, and Conservation Biology
     institution: Colorado State University
     year: 2015
+
+
+# Enter email to display Gravatar (if Gravatar enabled in Config)
 email: ""
-interests:
-- Data Science
-- GIS
-- Statistics
-- R Programming
-name: Jacob Peterson
-#organizations:
-#- name: Stanford University
-#  url: ""
-#role: Professor of Artificial Intelligence
+
+
 social:
 - icon: envelope
   icon_pack: fas
@@ -31,25 +51,19 @@ social:
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/PetersonJacobM
-#- icon: google-scholar
-#  icon_pack: ai
-#  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
 - icon: github
   icon_pack: fab
   link: https://github.com/jacpete
-
-#resume icon downloaded from https://www.flaticon.com/free-icon/resume-document_85047#
-#- icon: resume
-#  icon_pack: jp
-#  link: /resume
-#cv icon downloaded from https://www.pngkey.com/detail/u2e6e6y3e6y3r5r5_file-document-cv-curriculum-vitae-svg-png-icon/
 - icon: cv
   icon_pack: ai
   link: '#cv-resume'
-superuser: true
+  
+# Organizational groups that you belong to (for People widget)
+#   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
-- Researchers
-- Visitors
+# - Researchers
+# - Visitors
+
 ---
 
 My career has given me experience applying a broad range of statistical and spatial methodologies and honed me into expert in R programming and working with GIS.

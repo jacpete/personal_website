@@ -56,7 +56,7 @@ All the software needed can be installed across all major operating systems (Lin
 
 ## Suggested Reading
 
-A lot of what I learned to complete my website build came from the [blogdown book](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://yihui.org), [Amber Thomas](https://amber.rbind.io), and [Alison Presmanes Hill](https://alison.rbind.io) on creating a website in RStudio using the `blogdown` R package. It has an entire chapter dedicated to introducing new users to **Hugo** and discusses how to deploy your site using **Netlify**.  
+A lot of what I learned to complete my website build came from the [blogdown book](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://yihui.org), [Amber Thomas](https://amber.rbind.io), and [Alison Presmanes Hill](https://alison.rbind.io) on creating a website in RStudio using the `blogdown` R package. It has an entire chapter dedicated to introducing new users to **Hugo** and discusses how to deploy your site using **Netlify**.  I also highly recommend having a general workng knowledge of Markdown and/or RMarkdown.
 
 # Getting Started
 
@@ -234,43 +234,213 @@ Located at '/config/_default/params.toml, I changed the following settings from 
 * math = true
   - I foresee myself using LaTex math on some of my pages and decided to enable it as a global option.
 * Comment out edit_page options to prevent visitors from editing pages
-* Contact Details: Fill them out with whatever information you want to include in the contact widget. Here is a screenshot of what mine looks like. 
-![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/paramsContact.png)
-I chose to not use the default email option so that I could have better control over how the link is set. If you want to use an email form, use the default email option. You may get an error if you set your email to a blank string stating: *'Please set an email address for the contact form using the `email` parameter in `params.toml`. Otherwise, set `email_form = 0` to disable the contact form.'* To fix this ensure the `email_form` option in the '/content/home/contact.md' file is set to 0.
-![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/paramsContact2.png)
+* Contact Details: Fill them out with whatever information you want to include in the contact widget. Here is a snippet of what mine looks like:  
+dsaf  
+```{md}
+############################
+## Contact details
+##
+## These details power the Contact widget (if enabled).
+## Additionally, for organizations, these details may be used to enrich search engine results.
+############################
+
+# Enter contact details (optional). To hide a field, clear it to "".
+email = ""
+phone = ""
+
+# Address
+# For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
+#address = {city = "Linwood", region = "KS", postcode = "66052", country = "United States", country_code = "US"}
+
+# Geographic coordinates
+# To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
+#coordinates = {latitude = "37.4275", longitude = "-122.1697"}
+
+# Directions for visitors to locate you.
+#directions = "Enter Building 1 and take the stairs to Office 200 on Floor 2"
+
+# Office hours
+# A list of your office hours. To remove, set to an empty list `[]`.
+#office_hours = ["Monday 10:00 to 13:00", "Wednesday 09:00 to 10:00"]
+
+# Enter an optional link for booking appointments (e.g. calendly.com).
+#appointment_url = "https://calendly.com"
+
+# Contact links
+#   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
+contact_links = [
+  {icon = "envelope", icon_pack = "fas", name = "JacobPetersonMSc@gmail.com", link = "mailto:jacobpetersonmsc@gmail.com"},
+  {icon = "github", icon_pack = "fab", name = "github.com/jacpete", link = "https://github.com/jacpete"},
+  {icon = "twitter", icon_pack = "fab", name = "@PetersonJacobM", link = "https://twitter.com/PetersonJacobM"},
+  # {icon = "cv", icon_pack = "ai", name = "CV and Resume", link = "#cv-resume"},
+  #{icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
+  #{icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
+  #{icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
+  # {icon = "telegram", icon_pack = "fab", name = "Telegram Me", link = "https://telegram.me/@Telegram"},
+  ]
+```  
+<ul>
+  <ul>
+    <li>
+    I chose to not use the default email option so that I could have better control over how the link is set. If you want to use an email form, fill in your email with the default email option. You may get an error if you set your email to a blank string stating: *'Please set an email address for the contact form using the `email` parameter in `params.toml`. Otherwise, set `email_form = 0` to disable the contact form.'* To fix this ensure the `email_form` option in the '/content/home/contact.md' file is set to 0.
+    </li>
+  </ul>
+</ul>
+```{md}
++++
+# Contact widget.
+widget = "contact"  # See https://sourcethemes.com/academic/docs/page-builder/
+headless = true  # This file represents a page section.
+active = true  # Activate this widget? true/false
+weight = 130  # Order that this section will appear.
+
+title = "Contact"
+subtitle = ""
+
+# Automatically link email and phone?
+autolink = true
+
+# Email form provider
+#   0: Disable email form
+#   1: Netlify (requires that the site is hosted by Netlify)
+#   2: formspree.io
+email_form = 0
++++
+```
+<ul>
+  <ul>
+    <li>
+    I also wanted to provide a quick note about how to set custom contacts links like I did with the email link. Academic supports font packs from [Font Awesome](https://fontawesome.com/v4.7.0/) and [Academic Icons](https://jpswalsh.github.io/academicons/). You can go to those websites, find the icon you wish to use and insert its name as the `icon`. The `icon_pack` defines whether it is from font awesome _fa\*_), or from academic icons (*ai*). The `name` is what it will display on the page and the `link` is where it will direct you to. You can add in links to other pages of your website by naming them from the root of your website like `'/posts'`. or directing to another widget on the page like `'#contact'`.
+    </li>
+  </ul>
+</ul>
+
 * main_menu = {align = "r", show_logo = true}
   - I moved the main menu to the right side of my header for personal aesthetics. 
 
 
-## Edit Authors /authors/admin/_index.md
+### Edit Author Biography on the Homepage
+As I am making this a personal website I want the biography on the homepage to display my own information, not the fictional information of HBO's Silicon Valley's Neslon Bighetti. 
+![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/authorOriginal.png)
+To do this, edit the '*/content/authors/admin/\_index.md*' file. This is just a markdown file with special options in the YAML portion that the contact widget uses to fill in the widget template. The main text of the document represents the actual biography paragraph. An example of what mine looks like copied below. 
+
+
+
+```{md}
+---
+# Display name
+name: Jacob Peterson
+
+# Username (this should match the folder name)
+authors:
+- admin
+
+# Is this the primary user of the site?
+superuser: true
+
+# Role/position
+#role: Professor of Artificial Intelligence
+
+#organizations:
+#- name: Stanford University
+#  url: ""
+
+# Short bio (displayed in user profile at end of posts)
+bio: I enjoy transforming data into solutions. I am experienced in using using a combination of GIS and R to wrangle and analyze data.
+
+
+interests:
+- Data Science
+- GIS
+- Statistics
+- R Programming
+
+
+education:
+  courses:
+  - course: MSc in Applied Statistics and Analytics
+    institution: University of Kansas Medical Center
+    year: Expected 2021
+  - course: MSc in Natural Resource Ecology and Management
+    institution: Oklahoma State University
+    year: 2018
+  - course: BSc in Fish, Wildlife, and Conservation Biology
+    institution: Colorado State University
+    year: 2015
+
+
+# Enter email to display Gravatar (if Gravatar enabled in Config)
+email: ""
+
+
+social:
+- icon: envelope
+  icon_pack: fas
+  link: '#contact'
+- icon: twitter
+  icon_pack: fab
+  link: https://twitter.com/PetersonJacobM
+- icon: github
+  icon_pack: fab
+  link: https://github.com/jacpete
+  
+# Organizational groups that you belong to (for People widget)
+#   Set this to `[]` or comment out if you are not using People widget.
+user_groups:
+# - Researchers
+# - Visitors
+
+---
+
+My career has given me experience applying a broad range of statistical and spatial methodologies and honed me into expert in R programming and working with GIS.
+Academic research has prepared me  to think critically, learn new skills independently and quickly, manage complex projects, and collaborate within teams to achieve results.
+I enjoy exploring datasets, solving the puzzles that accompany analysis, and transforming raw data into the solutions used to answer important questions.  
+I am currently looking for a data science position that allows me to solve pragmatic problems while leveraging my skills in data management, GIS, and statistical analysis.
+```
+
+
+Finally, insert a headshot of yourself into your biography by replacing the avatar.jpg file in the '*/content/authors/\_admin*' folder. Just make sure you rename it to be `avatar.jpg` or `avatar.png`.
+
+
+
+### Edit files in home folder to specify what widgets are shown
+You may have also noticed a bunch of other widget sections on your homepage that you may want to alter or turn on an off. The place to start with this is in the '*/content/home*' folder. This folder contains a bunch of markdown documents that define what widgets (or sections) will be displayed on your homepage. We have already looked at the *contact.md* file earlier in this tutorial. All of these documents have a few default options in the header.
+
+* `widget` - Name of the widget template that you want to call. By default these are found in '*/themes/academic/layouts/partials/widgets*'. You likely aren't going to change unless you start customizing widget templates.
+* `headless` - TRUE/FALSE. Is this widget just a section on the page. Most likely going to keep this as true.
+* `active` - TRUE/FALSE. Whether this widget should be displayed. The most common setting you will change.
+* `weight` - An integer that gives weight to where the section will be displayed on the page. Lower numbers get displayed closer to the top and large numbers go closer to the bottom.
+* `title` - Title on the widget
+* `subtitle` - Subtitle on the widget
+
+Some documents have additional options that are defined. These options are used by specific widgets to customize and fill in additional information. For these special widgets, you can just follow the examples and comments and fill in your own information.
+
 
 
 
 ### menu.toml
-Located at '/config/_default/menu.toml, this is where you change what widgets you want to display in your header.
+Located at '/config/_default/menu.toml, this is where you change what links you want to display in your header. In a one page site these will likely just include a lot of reference links like '*#contact*', but you have it link to other webpages as well.
+Similar to configuring your home page content, the `weight` is relative for the order that the links appear in the document, `name` refers to the display name in the header, and `url` is the link location.
 
 
 
-## Set specific blogdown options with .Rprofile
-* default to .Rmd
-* author name
-
-## Edit Authors \_index.md
-
-## Edit files in home folder to specify what widgets are shown
-
-## copied post and made a blog duplicate
-* blogs.md
-* menu.toml
-
-## edit menu.toml to include tabs and links I want
 
 
 
-## add custom icon to /assets/images/icon.png
-* needs to 512x512px
 
 
+
+
+## Add custom icon for your site.
+Find a png icon that you want to use as your sites icon in the browser tab. It seems as though the only restriction is that it needs to be 512x512 pixels. Once you have the icon you want to use save it to '/assets/images/icon.png`. See more information [here](https://sourcethemes.com/academic/docs/customization/#website-icon).
+
+
+
+\  
+\  
+
+# Conclusion
+After spending some time editing your site and getting all of your information inserted you should have a functioning single page website. Feel free to stop here or continue on customizing and creating new pages and elements to create the perfect website for yourself. 
 
 \  
 \  
