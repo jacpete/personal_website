@@ -21,7 +21,7 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-draft: true
+draft: false
 output:
   blogdown::html_page:
     toc: yes
@@ -162,5 +162,12 @@ May also get an error that states *"error: unable to read askpass response from 
 Congratulations, you now have installed a local version one of your GitHub repositories using RStudio. You can now use the **Git** tab in the upper right pane to make commits, pull updates from your branch, and push new commits to the branch.
 
 ![](/blog/R/2020-02-03-using-rstudio-with-github_files/GitTab.png)
+
+
+## Using Git Controls
+
+
+
+# Conclusion
 
 
