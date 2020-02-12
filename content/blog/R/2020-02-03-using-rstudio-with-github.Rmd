@@ -33,21 +33,31 @@ knitr::opts_chunk$set(echo = TRUE, results = 'hide', eval = FALSE)
 
 # Introduction
 
-This is what I am going to teach
+I first learned about GitHub when searching for a better way to organize all of the R code I was writing during my Master's program. Before that point in my life, testing out new bits of code often involved me copying my entire script to another file and saving it with a new, but similar name. 
 
-Tutorial is focused towards installs on Ubuntu Linux and Microsoft Windows operating systems because that is what I primarily use. However, most instructions are the same across operating systems so a user of Mac OSX or other Linux distribution can follow along as well.
+![](/blog/R/2020-02-03-using-rstudio-with-github_files/oriFolderStructure.png){width=40%}
+<p align="center"> Example of bad versioning practices </p>
 
-## Why I use GitHub
 
-Description
+If I ever came back to a piece of code and needed to look for a snippet from an old version, it was a nightmare trying to find it.  
+
+Additionally, I often found myself working between multiple computers and operating systems and I was looking for a way I could keep my scripts up to date across all of my machines.  
+
+I found that by managing my projects on GitHub, I could fix both of these issues. By tracking incremental changes to my code, I could stop having to save complete new versions of my code when I wanted to make a major change and if I could remember to push my incremental changes or 'commits' in git lingo to the GitHub servers, I would have access to the latest version of my code from any of my machines.
+
+I intend this tutorial to be a soft introduction to git and GitHub for the average user of R that is looking to take better control of their code version history.
+
+This tutorial is focused towards installs on Ubuntu Linux and Microsoft Windows operating systems because that is what I primarily use. However, most of the tutorial instructions are the same across operating systems so a user of Mac OSX or other Linux distribution can follow along as well.
 
 ## Software Requirements
 
+To start off I will assume that users will have R and RStudio installed on their machine and have a general working understanding of the software. I will also expect the user to have an account made for GitHub.  
+
 All the software needed can be installed across all major operating systems (Linux, macOS X, and Microsoft Windows).
 
-* **R** -
+* [**R**](https://cran.r-project.org/)
 
-* **RStudio** -
+* [**RStudio**](https://rstudio.com/products/rstudio/download/)
 
 * **GitHub** account
 
