@@ -116,3 +116,26 @@ ul.pagination {
   background-color: hsla(129, 12%, 12%, 1) !important;
 }
 
+
+// ######################
+// Table Color Settings
+// ######################
+
+.table {
+  color: #f8f8f2;
+}
+
+caption {
+  color: #f8f8f2;
+  text-align: center;
+}
+
+.dark table>tbody>tr:nth-child(odd)>td {
+  background-color: hsla(129, 12%, 12%, 1);
+}
+
+.dark table>tbody>tr:hover>td {
+  background-color: hsla(129, 12%, 12%, 1);
+}
+
+
