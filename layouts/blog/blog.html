@@ -3,17 +3,26 @@
 {{ partial "page_header.html" . }}
 
 <div class="universal-wrapper">
-  
+
   {{ with .Content }}
   <div class="article-style">{{ . }}</div>
   {{ end }}
-  
-  
+
+
   <div style="margin: 20px 5px 30px;">
     {{ partial "term_cloud.html" . }}
   </div>
 
   {{ $paginator := .Paginate .Data.Pages }}
+
+  {{ if eq $paginator.PageNumber 1 }}
+    <div id=blogDescription>
+      <p>
+        Welcome to my blog! I mainly use this as a collection of helpful hints, tips and tricks that I want to remind myself of in the future, but I try to write my posts in a way that wayward visitors to the blog may find helpful for their own purposes. If there is ever a topic you are interested in that you want to talk to me more about,  feel free to <a href="/#contact"> contact me </a> or start a conversation on twitter.
+        </p>
+    </div>
+  {{ end }}
+
   {{ range $paginator.Pages }}
     {{ if eq $.Params.view 1 }}
       {{ partial "li_list" . }}
@@ -22,7 +31,7 @@
     {{ else }}
       {{ partial "li_compact" . }}
     {{ end }}
-  {{ end }} 
+  {{ end }}
 
   {{ partial "fancypagination.html" . }}
 
