@@ -130,7 +130,7 @@ git config user.name</code></pre>
 <p><img src="/blog/R/2020-02-03-using-rstudio-with-github_files/rstudioNewProject2.png" /></p>
 <p>Finally retrieve the SSH clone URL for your repository from GitHub and copy it into the final New Project window in RStudio.
 Make sure it saves to the directory you want and click <em>Create Project</em>. The first time you connect to GitHub on a machine you will be asked to verify that the RSA fingerprint is okay. Just type <code>yes</code> in the popup and click enter. The repo will then clone itself into the new directory and open up as an RStudio project.</p>
-<p>May also get an error that states <em>“error: unable to read askpass response from ‘rpostback-askpass’”</em>. If you get this go to your terminal and run git push -u origin master and confirm your RSA fingerprint and try to install the package again.</p>
+<p>May also get an error that states <em>“error: unable to read askpass response from ‘rpostback-askpass’”</em>. If you get this go to your terminal and run <code>git push -u origin master</code> and confirm your RSA fingerprint and try to install the project again.</p>
 <p><img src="/blog/R/2020-02-03-using-rstudio-with-github_files/newproject3.png" /></p>
 <p>Congratulations, you now have installed a local version one of your GitHub repositories using RStudio. You can now use the <strong>Git</strong> tab in the upper right pane to make commits, pull updates from your branch, and push new commits to the branch.</p>
 <p><img src="/blog/R/2020-02-03-using-rstudio-with-github_files/GitTab.png" /></p>
