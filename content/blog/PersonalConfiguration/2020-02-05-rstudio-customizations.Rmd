@@ -94,7 +94,7 @@ sudo apt install libproj-dev libgeos-dev libcairo2-dev
 sudo apt install libudunits2-dev
 ```
 
-
+To knit to pdf with Rmarkdown you will need the following:
 ```{bash}
 sudo apt install texlive texlive-latex-extra lmodern
 ```
