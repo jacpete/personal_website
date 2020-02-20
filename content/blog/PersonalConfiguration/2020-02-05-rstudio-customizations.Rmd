@@ -51,6 +51,7 @@ Access the global options menu with **Tools** &rarr; **Global Options...**
 
 ### General &rarr; Basic
 
+* Set *'Default working directory (when not in project)'* to GitHub folder
 * Uncheck *'Restore .RData into workspace at startup'*
 * Change *'Save workspace to .RData on exit'* to *'Never'*
 
@@ -86,12 +87,50 @@ Check out my post on how to setup GitHub with RStudio [here]()
 
 # Install Packages
 
+
+## Ubuntu Dependencies
+Linux has dependencies that need installed via  package manager to run some of my packages. Here is how to install them on Ubuntu:
+
+Install Java
 ```{bash}
 sudo apt install default-jre default-jdk
+```
+
+Install dependencies for devtools
+```{bash}
+#For devtools and its dependencies:
 sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev
+```
+
+Install dependencies for sf (units)
+```{bash}
+sudo apt install libudunits2-dev
+```
+
+Install spatial dependencies for sf, sp, rgeos, raster, stars, etc
+```{bash}
 sudo apt install gdal-bin python-gdal python3-gdal libgdal-dev
 sudo apt install libproj-dev libgeos-dev libcairo2-dev
-sudo apt install libudunits2-dev
+```
+
+Or you could also install QGIS which installs a lot of the dependencies as well
+
+QGIS Install Instructions at: https://www.qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu
+Add following to /etc/apt/sources.list
+```{bash}
+deb     https://qgis.org/ubuntu bionic main
+deb-src https://qgis.org/ubuntu bionic main
+```
+
+Install the key for the QGIS source
+```{bash}
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 51F523511C7028C3
+```
+
+Install QGIS and the libgdal dependency
+```{bash}
+sudo apt update
+sudo apt install qgis qgis-plugin-grass libgdal-dev
 ```
 
 To knit to pdf with Rmarkdown you will need the following:
@@ -99,32 +138,19 @@ To knit to pdf with Rmarkdown you will need the following:
 sudo apt install texlive texlive-latex-extra lmodern
 ```
 
+## Install the R packages
+Install my running package list for R
 ```{r}
-
-# Oracle Java JDK  https://thishosting.rocks/install-java-ubuntu/ (java 11 linux uprising ppa version)
-# install R (follow CRAN)
-# install Rstudio (deb from Rstudio website)
-# check if rJava will install might have to run: sudo R CMD javareconf
-
-# #Install R packages
-# install needed dependencies:
-# Java Oracle Java JDK  https://thishosting.rocks/install-java-ubuntu/ (java 11 linux uprising ppa version)
-# sudo add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
-# sudo apt install gdal-bin python-gdal python3-gdal libgdal1-dev libgdal-dev
-# sudo apt-get install libgdal1-dev libproj-dev libgeos-dev libcairo2-dev
-# sudo apt-get install libudunits2-dev
-# sudo apt-get install texlive texlive-latex-extra lmodern
-
 
 packList <- c("lattice","sp","rgdal","rgeos","sf","data.table",
               "plyr","AICcmodavg","bbmle","devtools",
-              "dismo","FactoMineR","fasterize","fields",
+              "dismo","FactoMineR","fasterize",
               "ggplotify","ggspatial","gtable","gridExtra",
-              "maptools","reshape2","rJava","SDMTools","shiny",
+              "maptools","rJava","SDMTools","shiny",
               "spThin","survival","VGAM","raster",
               "tidyverse","tmap","tmaptools","devtools","captioner",
               "roxygen2","tidyverse","FNN","rmarkdown","blogdown","bookdown",
-              "pagedown")
+              "pagedown", "miniUI")
 
 install.packages(packList)
 
@@ -132,8 +158,6 @@ install.packages(packList)
 #Personal Packages
 devtools::install_github("jacpete/jpfxns")
 devtools::install_github("jacpete/jpfxns2")
-
-
 ```
 
 
