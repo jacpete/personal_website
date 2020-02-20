@@ -33,7 +33,7 @@ output:
 <li><a href="#core">Core</a></li>
 <li><a href="#install">Install</a></li>
 <li><a href="#packages">Packages</a></li>
-<li><a href="#suggested-reading">Suggested Reading</a></li>
+<li><a href="#keybindings">Keybindings</a></li>
 </ul></li>
 </ul>
 </div>
@@ -67,6 +67,7 @@ output:
 <li>project-plus</li>
 <li>atom-language-r</li>
 <li>atom-beautify</li>
+<li>platformio-ide-terminal</li>
 </ul>
 </div>
 <div id="packages" class="section level3">
@@ -101,7 +102,13 @@ output:
 </ul>
 </div>
 </div>
-<div id="suggested-reading" class="section level2">
-<h2>Suggested Reading</h2>
+<div id="keybindings" class="section level3">
+<h3>Keybindings</h3>
+<ul>
+<li>Click the link for <em>your keymap file</em></li>
+<li>Add the following to keymap.cson:</li>
+</ul>
+<pre><code>&#39;atom-workspace atom-text-editor:not([mini])&#39;:
+  &#39;ctrl-enter&#39;: &#39;platformio-ide-terminal:insert-selected-text&#39;</code></pre>
 </div>
 </div>
