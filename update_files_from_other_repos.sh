@@ -105,12 +105,20 @@ userList=($(cat $csvName |  awk -F "," '{print $1}' | awk 'NR>1' | awk 'NF > 0')
 repoList=($(cat $csvName |  awk -F "," '{print $2}' | awk 'NR>1' | awk 'NF > 0'))
 oriFileLocList=($(cat $csvName |  awk -F "," '{print $3}' | awk 'NR>1' | awk 'NF > 0'))
 websiteFileLocList=($(cat $csvName |  awk -F "," '{print $4}' | awk 'NR>1' | awk 'NF > 0'))
+# deleteTermList=($(cat $csvName |  awk -F "," '{print $5}' | awk 'NR>1' | awk 'NF > 0'))
+
+printf '%s\n' "${userList[@]}"
+printf '%s\n' "${repoList[@]}"
+printf '%s\n' "${oriFileLocList[@]}"
+printf '%s\n' "${websiteFileLocList[@]}"
+# printf '%s\n' "${deleteTermList[@]}"
 
 
 #### Get List of Unique Repos
 uniqRepo=($(printf '%s\n' "${repoList[@]}" | sort | uniq))
 # allRepo+=(${websiteRepo})
-# printf '%s\n' "${allRepo[@]}"  #Prints list of all unique repos
+# printf '%s\n' "${uniqRepo[@]}"
+
 
 
 #### Update needed repos
@@ -127,26 +135,39 @@ done
 for i in ${!oriFileLocList[*]}
 do
   oriFile="${githubRepoLoc}/${repoList[i]}/${oriFileLocList[i]}" #original file pathname
-  # echo $oriFile
-  filename="${oriFile##*/}" #file name
-  # echo $filename
   websiteFileLoc="${githubRepoLoc}/${websiteRepo}/${websiteFileLocList[i]}" #website filepath
-  # echo $websiteFileLoc
-  websiteFile="${websiteFileLoc}/${filename}" #website file pathname
-  # echo $websiteFile
-  if [ -f ${websiteFile} ] #if file exists in website repo
+
+
+  #Split and do copy differntly for files vs directories
+  if [[ -f "$oriFile" ]]
   then
-    if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different in source and website repo
+    echo "File"
+    filename="${oriFile##*/}" #file name
+    websiteFile="${websiteFileLoc}/${filename}" #website file pathname
+
+    if [ -f "${websiteFile}" ] #if file exists in website repo
     then
-      echo "Updating ${filename} in website repo"
+      if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different in source and website repo
+      then
+        echo "Updating ${filename} in website repo"
+        cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
+      fi
+    else
+      echo "Adding ${filename} to website repo"
+      mkdir -p "${websiteFileLoc}" #ensure filepath exists and create if not
       cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
     fi
+
   else
-    echo "Adding ${filename} to website repo"
-    mkdir -p "${websiteFileLoc}" #ensure filepath exists and create if not
-    cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
+    echo "Dir"
   fi
 done
+
+#Run local Hugo to get files in the right place
+cd "$githubRepoLoc/$websiteRepo"
+Rscript runLocalHugo.R &>/dev/null &
+sleep 30
+kill -SIGINT $!
 
 
 #### Update Website Repository
