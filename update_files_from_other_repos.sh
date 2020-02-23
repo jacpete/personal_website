@@ -136,21 +136,33 @@ for i in ${!oriFileLocList[*]}
 do
   oriFile="${githubRepoLoc}/${repoList[i]}/${oriFileLocList[i]}" #original file pathname
   websiteFileLoc="${githubRepoLoc}/${websiteRepo}/${websiteFileLocList[i]}" #website filepath
-
+  # websiteFileLoc="/home/jacpete/WebsiteManagement/personal_website/content/blog/R/Environmental_Informatics_Project"
 
   #Split and do copy differntly for files vs directories
   if [[ -f "$oriFile" ]]
   then
     echo "File"
-    filename="${oriFile##*/}" #file name
-    websiteFile="${websiteFileLoc}/${filename}" #website file pathname
+
+    #Get the correct filename
+    if grep -q "\." <<< "${websiteFileLoc: -5}" #check if new filepath has extension
+    then
+      #if it has an extension
+      filename="${websiteFileLoc##*/}" #get filename from new path
+      websiteFile="${websiteFileLoc}" #website file pathname
+      websiteFileLoc=($(dirname "$websiteFileLoc"))
+    else
+      echo "It's not"
+      filename="${oriFile##*/}" #get filename from original path
+      websiteFile="${websiteFileLoc}/${filename}" #website file pathname
+    fi
+
 
     if [ -f "${websiteFile}" ] #if file exists in website repo
     then
       if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different in source and website repo
       then
         echo "Updating ${filename} in website repo"
-        cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
+        cp "${oriFile}" "${websiteFile}" #copy source file to website repo
       fi
     else
       echo "Adding ${filename} to website repo"
@@ -160,6 +172,7 @@ do
 
   else
     echo "Dir"
+    cp -r "folderIn" "folderTo"
   fi
 done
 
