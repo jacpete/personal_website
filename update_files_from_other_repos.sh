@@ -83,6 +83,46 @@ update_local_repo () {
   cd ${githubRepoLoc}
 }
 
+#$1: oriFile
+#$2: websiteFileLoc
+copy_File_Or_Dir () {
+  oriFile="${1}" #original file pathname
+  websiteFileLoc="${2}" #website filepath
+
+  #Split and do copy differntly for files vs directories
+  if [[ -f "$oriFile" ]] #if file
+  then
+    #Get the correct filename
+    if grep -q "\." <<< "${websiteFileLoc: -5}" #check if new filepath has extension
+    then
+      #if it has an extension
+      filename="${websiteFileLoc##*/}" #get filename from new path
+      websiteFile="${websiteFileLoc}" #website file pathname
+      websiteFileLoc=($(dirname "$websiteFileLoc"))
+    else
+      filename="${oriFile##*/}" #get filename from original path
+      websiteFile="${websiteFileLoc}/${filename}" #website file pathname
+    fi
+
+
+    if [ -f "${websiteFile}" ] #if file exists in website repo
+    then
+      if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different in source and website repo
+      then
+        echo "Updating ${filename} in website repo"
+        cp "${oriFile}" "${websiteFile}" #copy source file to website repo
+      fi
+    else
+      echo "Adding ${filename} to website repo"
+      mkdir -p "${websiteFileLoc}" #ensure filepath exists and create if not
+      cp "${oriFile}" "${websiteFile}" #copy source file to website repo
+    fi
+
+  else #if directory
+    echo "Adding ${filename} directory to website repo"
+    cp -r "${oriFile}" "${websiteFileLoc}" #recopy directory everytime
+  fi
+}
 
 
 
@@ -138,40 +178,7 @@ do
   websiteFileLoc="${githubRepoLoc}/${websiteRepo}/${websiteFileLocList[i]}" #website filepath
   # websiteFileLoc="/home/jacpete/WebsiteManagement/personal_website/content/blog/R/Environmental_Informatics_Project"
 
-  #Split and do copy differntly for files vs directories
-  if [[ -f "$oriFile" ]] #if file
-  then
-    echo "File"
-
-    #Get the correct filename
-    if grep -q "\." <<< "${websiteFileLoc: -5}" #check if new filepath has extension
-    then
-      #if it has an extension
-      filename="${websiteFileLoc##*/}" #get filename from new path
-      websiteFile="${websiteFileLoc}" #website file pathname
-      websiteFileLoc=($(dirname "$websiteFileLoc"))
-    else
-      filename="${oriFile##*/}" #get filename from original path
-      websiteFile="${websiteFileLoc}/${filename}" #website file pathname
-    fi
-
-
-    if [ -f "${websiteFile}" ] #if file exists in website repo
-    then
-      if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different in source and website repo
-      then
-        echo "Updating ${filename} in website repo"
-        cp "${oriFile}" "${websiteFile}" #copy source file to website repo
-      fi
-    else
-      echo "Adding ${filename} to website repo"
-      mkdir -p "${websiteFileLoc}" #ensure filepath exists and create if not
-      cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
-    fi
-
-  else #if directory
-    cp -r "${oriFile}" "${websiteFileLoc}" #recopy directory everytime
-  fi
+  copy_File_Or_Dir "${oriFile}" "${websiteFileLoc}"
 done
 
 #Run local Hugo to get files in the right place
