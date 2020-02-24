@@ -139,7 +139,7 @@ do
   # websiteFileLoc="/home/jacpete/WebsiteManagement/personal_website/content/blog/R/Environmental_Informatics_Project"
 
   #Split and do copy differntly for files vs directories
-  if [[ -f "$oriFile" ]]
+  if [[ -f "$oriFile" ]] #if file
   then
     echo "File"
 
@@ -151,7 +151,6 @@ do
       websiteFile="${websiteFileLoc}" #website file pathname
       websiteFileLoc=($(dirname "$websiteFileLoc"))
     else
-      echo "It's not"
       filename="${oriFile##*/}" #get filename from original path
       websiteFile="${websiteFileLoc}/${filename}" #website file pathname
     fi
@@ -170,14 +169,14 @@ do
       cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
     fi
 
-  else
-    echo "Dir"
-    cp -r "folderIn" "folderTo"
+  else #if directory
+    cp -r "${oriFile}" "${websiteFileLoc}" #recopy directory everytime
   fi
 done
 
 #Run local Hugo to get files in the right place
 cd "$githubRepoLoc/$websiteRepo"
+export RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc #pandoc is installed with Rstudio; and the rmarkdown pakcage automaticlaly looks for a $RSTUDIO_PANDOC path variable, make sure the path is availabel to R using this line
 Rscript runLocalHugo.R &>/dev/null &
 sleep 30
 kill -SIGINT $!
