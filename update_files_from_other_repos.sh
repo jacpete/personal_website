@@ -217,7 +217,7 @@ done
 #Run local Hugo to get files in the right place
 cd "$githubRepoLoc/$websiteRepo"
 export RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc #pandoc is installed with Rstudio and the rmarkdown pakcage automaticlaly looks for a $RSTUDIO_PANDOC path variable, make sure the path is availabel to R using this line, you can find the path by running RStudio and running this line `Sys.getenv("RSTUDIO_PANDOC")`
-Rscript -e 'if (!require(test)) install.packages("blogdown")'
+Rscript -e 'if (!require(blogdown)) install.packages("blogdown")'
 Rscript -e 'tryCatch(blogdown::hugo_version(), error=function(cond) blogdown::install_hugo())'
 Rscript -e 'blogdown::serve_site()' &>/dev/null &
 sleep 30
