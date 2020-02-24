@@ -28,6 +28,8 @@
 #  * repo - What repo is the file from?
 #  * oriFileLoc - Relative file location for the file inside the repo directory
 #  * websiteFileLoc - Relative directory for the file inside the website repo
+#  * additionalFilesDirs - Semicolon seperated list of additional files or
+                          #directories to update with the main file
 
 
 
@@ -83,11 +85,39 @@ update_local_repo () {
   cd ${githubRepoLoc}
 }
 
+#Add additional files as well to the same location (this is for dependencies like a folder that only needs updated with an Rmarkdown document)
+#$1: oriFileLoc
+#$2: websiteFileLoc
+#$3: addFileDirString
+add_additional_Files_And_Dirs () {
+  #Define Variables
+  oriFileLoc="${1}" #original file pathname
+  websiteFileLoc="${2}" #website filepath
+  addFileDirString="${3}" #website filepath
+
+  if [ "$addFileDirString" != "NA" ] #if additional files column is not na
+  then
+    IFS=';' read -ra addFileDirList <<< "$addFileDirString" #split up the files (semicolon delimited)
+    # printf '%s\n' "${addFileDirList[@]}"
+    for addFileDir in "${addFileDirList[@]}" #loop through those files
+    do
+      #Copy over additional files or directories.
+      echo "Copying additional file or directory: $addFileDir"
+      cp -r "${oriFileLoc}/${addFileDir}" "${websiteFileLoc}"
+    done
+  fi
+}
+
 #$1: oriFile
 #$2: websiteFileLoc
+#$3: addFileDirString
 copy_File_Or_Dir () {
+  #Define Variables
   oriFile="${1}" #original file pathname
   websiteFileLoc="${2}" #website filepath
+  addFileDirString="${3}" #website filepath
+
+  oriFileLoc=($(dirname "$oriFile"))
 
   #Split and do copy differntly for files vs directories
   if [[ -f "$oriFile" ]] #if file
@@ -111,16 +141,19 @@ copy_File_Or_Dir () {
       then
         echo "Updating ${filename} in website repo"
         cp "${oriFile}" "${websiteFile}" #copy source file to website repo
+        add_additional_Files_And_Dirs "$oriFileLoc" "$websiteFileLoc" "$addFileDirString"
       fi
     else
       echo "Adding ${filename} to website repo"
       mkdir -p "${websiteFileLoc}" #ensure filepath exists and create if not
       cp "${oriFile}" "${websiteFile}" #copy source file to website repo
+      add_additional_Files_And_Dirs "$oriFileLoc" "$websiteFileLoc" "$addFileDirString"
     fi
 
   else #if directory
     echo "Adding ${filename} directory to website repo"
     cp -r "${oriFile}" "${websiteFileLoc}" #recopy directory everytime
+    add_additional_Files_And_Dirs "$oriFileLoc" "$websiteFileLoc" "$addFileDirString"
   fi
 }
 
@@ -145,13 +178,13 @@ userList=($(cat $csvName |  awk -F "," '{print $1}' | awk 'NR>1' | awk 'NF > 0')
 repoList=($(cat $csvName |  awk -F "," '{print $2}' | awk 'NR>1' | awk 'NF > 0'))
 oriFileLocList=($(cat $csvName |  awk -F "," '{print $3}' | awk 'NR>1' | awk 'NF > 0'))
 websiteFileLocList=($(cat $csvName |  awk -F "," '{print $4}' | awk 'NR>1' | awk 'NF > 0'))
-# deleteTermList=($(cat $csvName |  awk -F "," '{print $5}' | awk 'NR>1' | awk 'NF > 0'))
+additionalFileDirList=($(cat $csvName |  awk -F "," '{print $5}' | awk 'NR>1' | awk 'NF > 0'))
 
-printf '%s\n' "${userList[@]}"
-printf '%s\n' "${repoList[@]}"
-printf '%s\n' "${oriFileLocList[@]}"
-printf '%s\n' "${websiteFileLocList[@]}"
-# printf '%s\n' "${deleteTermList[@]}"
+# printf '%s\n' "${userList[@]}"
+# printf '%s\n' "${repoList[@]}"
+# printf '%s\n' "${oriFileLocList[@]}"
+# printf '%s\n' "${websiteFileLocList[@]}"
+# printf '%s\n' "${additionalFileDirList[@]}"
 
 
 #### Get List of Unique Repos
@@ -176,14 +209,14 @@ for i in ${!oriFileLocList[*]}
 do
   oriFile="${githubRepoLoc}/${repoList[i]}/${oriFileLocList[i]}" #original file pathname
   websiteFileLoc="${githubRepoLoc}/${websiteRepo}/${websiteFileLocList[i]}" #website filepath
-  # websiteFileLoc="/home/jacpete/WebsiteManagement/personal_website/content/blog/R/Environmental_Informatics_Project"
+  addFileDirString="${additionalFileDirList[i]}"
 
-  copy_File_Or_Dir "${oriFile}" "${websiteFileLoc}"
+  copy_File_Or_Dir "${oriFile}" "${websiteFileLoc}" "${addFileDirString}"
 done
 
 #Run local Hugo to get files in the right place
 cd "$githubRepoLoc/$websiteRepo"
-export RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc #pandoc is installed with Rstudio; and the rmarkdown pakcage automaticlaly looks for a $RSTUDIO_PANDOC path variable, make sure the path is availabel to R using this line
+export RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc #pandoc is installed with Rstudio and the rmarkdown pakcage automaticlaly looks for a $RSTUDIO_PANDOC path variable, make sure the path is availabel to R using this line, you can find the path by running RStudio and running this line `Sys.getenv("RSTUDIO_PANDOC")`
 Rscript runLocalHugo.R &>/dev/null &
 sleep 30
 kill -SIGINT $!
