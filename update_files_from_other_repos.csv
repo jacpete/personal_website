@@ -1,6 +1,8 @@
-user,repo,oriFileLoc,websiteFileLoc
-jacpete,Resume_CV,cv_Peterson.html,static/repo/Resume_CV/html
-jacpete,Resume_CV,resume.html,static/repo/Resume_CV/html
-jacpete,Resume_CV,cv_Peterson.pdf,static/repo/Resume_CV/pdf
-jacpete,Resume_CV,resume_Peterson.pdf,static/repo/Resume_CV/pdf
-jacpete,testRepo,test.txt,static/repo/testRepo
+user,repo,oriFileLoc,websiteFileLoc,additionalFilesDirs
+jacpete,Resume_CV,cv_Peterson.html,static/repo/Resume_CV/html,NA
+jacpete,Resume_CV,resume.html,static/repo/Resume_CV/html,NA
+jacpete,Resume_CV,cv_Peterson.pdf,static/repo/Resume_CV/pdf,NA
+jacpete,Resume_CV,resume_Peterson.pdf,static/repo/Resume_CV/pdf,NA
+jacpete,testRepo,test.txt,static/repo/testRepo,NA
+jacpete,portfolio_DataExplorationAndCleaning_MovebankData,Environmental_Informatics_Project.html,content/blog/DS_Portfolio/Environmental_Informatics_Project.Rmd,Environmental_Informatics_Project_files
+jacpete,portfolio_DataExplorationAndCleaning_MovebankData,featured.png,content/project/barnacleGeeseMoveBank,NA
