@@ -2,9 +2,10 @@
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
 title: "MoveBank Exploratory Data Analysis"
-summary: ""
+summary: " "
 authors: []
-tags: []
+tags:
+  - Data Science Portfolio
 categories: []
 date: 2020-02-24T14:26:37-05:00
 
