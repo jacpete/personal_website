@@ -20,7 +20,8 @@ image:
   caption: ''
   focal_point: ''
   preview_only: no
-projects: []
+projects:
+  - website
 draft: false
 output:
   blogdown::html_page:
@@ -125,7 +126,8 @@ The repo will then clone itself into the new directory and open up as an RStudio
 <div id="installing-dependencies" class="section level3">
 <h3>Installing Dependencies</h3>
 <p>Now that your website is in a local folder on your computer, it is time to finish installing all the other local dependencies that you will need to make editing your website easier.</p>
-<p> </p>
+<p><br />
+</p>
 <div id="blogdown-package" class="section level4">
 <h4><code>blogdown</code> package</h4>
 <p>Install the blogdown package with the following code in RStudio.</p>
@@ -135,7 +137,8 @@ The repo will then clone itself into the new directory and open up as an RStudio
 <p align="center">
 blogdown Add-ins
 </p>
-<p> </p>
+<p><br />
+</p>
 </div>
 <div id="hugo" class="section level4">
 <h4>Hugo</h4>
@@ -145,7 +148,8 @@ blogdown Add-ins
 <p><img src="/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/netlifyHugoVersion.png" /></p>
 <p>Then specify which version of Hugo you want to install.</p>
 <pre class="r"><code>blogdown::install_hugo(version = &quot;0.60.1&quot;)</code></pre>
-<p> </p>
+<p><br />
+</p>
 </div>
 <div id="academic-theme-for-hugo" class="section level4">
 <h4>Academic Theme for Hugo</h4>
@@ -155,8 +159,9 @@ cd ~/GitHub/personal_website
 
 #Download git submodules within your project
 git submodule update --init --recursive</code></pre>
-<p> 
- </p>
+<p><br />
+<br />
+</p>
 </div>
 </div>
 </div>
@@ -214,7 +219,7 @@ This customization can be as simple filling in your information and rearranging 
 <li>I foresee myself using LaTex math on some of my pages and decided to enable it as a global option.</li>
 </ul></li>
 <li>Comment out edit_page options to prevent visitors from editing pages</li>
-<li>Contact Details: Fill them out with whatever information you want to include in the contact widget. Here is a snippet of what mine looks like:<br />
+<li>Contact Details: Fill them out with whatever information you want to include in the contact widget. Here is a snippet of what mine looks like:
 dsaf</li>
 </ul>
 <pre class="md"><code>############################
@@ -359,7 +364,7 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/jacpete
-  
+
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
@@ -370,7 +375,7 @@ user_groups:
 
 My career has given me experience applying a broad range of statistical and spatial methodologies and honed me into expert in R programming and working with GIS.
 Academic research has prepared me  to think critically, learn new skills independently and quickly, manage complex projects, and collaborate within teams to achieve results.
-I enjoy exploring datasets, solving the puzzles that accompany analysis, and transforming raw data into the solutions used to answer important questions.  
+I enjoy exploring datasets, solving the puzzles that accompany analysis, and transforming raw data into the solutions used to answer important questions.
 I am currently looking for a data science position that allows me to solve pragmatic problems while leveraging my skills in data management, GIS, and statistical analysis.</code></pre>
 <p>Finally, insert a headshot of yourself into your biography by replacing the avatar.jpg file in the ‘<em>/content/authors/_admin</em>’ folder. Just make sure you rename it to be <code>avatar.jpg</code> or <code>avatar.png</code>.</p>
 </div>
@@ -395,15 +400,17 @@ Similar to configuring your home page content, the <code>weight</code> is relati
 <div id="add-custom-icon-for-your-site." class="section level2">
 <h2>Add custom icon for your site.</h2>
 <p>Find a png icon that you want to use as your sites icon in the browser tab. It seems as though the only restriction is that it needs to be 512x512 pixels. Once you have the icon you want to use save it to ’/assets/images/icon.png`. See more information <a href="https://sourcethemes.com/academic/docs/customization/#website-icon">here</a>.</p>
-<p> 
- </p>
+<p><br />
+<br />
+</p>
 </div>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
 <p>After spending some time editing your site and getting all of your information inserted you should have a functioning single page website. Feel free to stop here or continue on customizing and creating new pages and elements to create the perfect website for yourself.</p>
-<p> 
- </p>
+<p><br />
+<br />
+</p>
 </div>
 <div id="additional-support" class="section level1">
 <h1>Additional Support</h1>
