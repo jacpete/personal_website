@@ -28,6 +28,8 @@
 #  * repo - What repo is the file from?
 #  * oriFileLoc - Relative file location for the file inside the repo directory
 #  * websiteFileLoc - Relative directory for the file inside the website repo
+#  * additionalFilesDirs - Semicolon seperated list of additional files or
+                          #directories to update with the main file
 
 
 
@@ -83,6 +85,77 @@ update_local_repo () {
   cd ${githubRepoLoc}
 }
 
+#Add additional files as well to the same location (this is for dependencies like a folder that only needs updated with an Rmarkdown document)
+#$1: oriFileLoc
+#$2: websiteFileLoc
+#$3: addFileDirString
+add_additional_Files_And_Dirs () {
+  #Define Variables
+  oriFileLoc="${1}" #original file pathname
+  websiteFileLoc="${2}" #website filepath
+  addFileDirString="${3}" #website filepath
+
+  if [ "$addFileDirString" != "NA" ] #if additional files column is not na
+  then
+    IFS=';' read -ra addFileDirList <<< "$addFileDirString" #split up the files (semicolon delimited)
+    # printf '%s\n' "${addFileDirList[@]}"
+    for addFileDir in "${addFileDirList[@]}" #loop through those files
+    do
+      #Copy over additional files or directories.
+      echo "Copying additional file or directory: $addFileDir"
+      cp -r "${oriFileLoc}/${addFileDir}" "${websiteFileLoc}"
+    done
+  fi
+}
+
+#$1: oriFile
+#$2: websiteFileLoc
+#$3: addFileDirString
+copy_File_Or_Dir () {
+  #Define Variables
+  oriFile="${1}" #original file pathname
+  websiteFileLoc="${2}" #website filepath
+  addFileDirString="${3}" #website filepath
+
+  oriFileLoc=($(dirname "$oriFile"))
+
+  #Split and do copy differntly for files vs directories
+  if [[ -f "$oriFile" ]] #if file
+  then
+    #Get the correct filename
+    if grep -q "\." <<< "${websiteFileLoc: -5}" #check if new filepath has extension
+    then
+      #if it has an extension
+      filename="${websiteFileLoc##*/}" #get filename from new path
+      websiteFile="${websiteFileLoc}" #website file pathname
+      websiteFileLoc=($(dirname "$websiteFileLoc"))
+    else
+      filename="${oriFile##*/}" #get filename from original path
+      websiteFile="${websiteFileLoc}/${filename}" #website file pathname
+    fi
+
+
+    if [ -f "${websiteFile}" ] #if file exists in website repo
+    then
+      if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different in source and website repo
+      then
+        echo "Updating ${filename} in website repo"
+        cp "${oriFile}" "${websiteFile}" #copy source file to website repo
+        add_additional_Files_And_Dirs "$oriFileLoc" "$websiteFileLoc" "$addFileDirString"
+      fi
+    else
+      echo "Adding ${filename} to website repo"
+      mkdir -p "${websiteFileLoc}" #ensure filepath exists and create if not
+      cp "${oriFile}" "${websiteFile}" #copy source file to website repo
+      add_additional_Files_And_Dirs "$oriFileLoc" "$websiteFileLoc" "$addFileDirString"
+    fi
+
+  else #if directory
+    echo "Adding ${filename} directory to website repo"
+    cp -r "${oriFile}" "${websiteFileLoc}" #recopy directory everytime
+    add_additional_Files_And_Dirs "$oriFileLoc" "$websiteFileLoc" "$addFileDirString"
+  fi
+}
 
 
 
@@ -105,12 +178,20 @@ userList=($(cat $csvName |  awk -F "," '{print $1}' | awk 'NR>1' | awk 'NF > 0')
 repoList=($(cat $csvName |  awk -F "," '{print $2}' | awk 'NR>1' | awk 'NF > 0'))
 oriFileLocList=($(cat $csvName |  awk -F "," '{print $3}' | awk 'NR>1' | awk 'NF > 0'))
 websiteFileLocList=($(cat $csvName |  awk -F "," '{print $4}' | awk 'NR>1' | awk 'NF > 0'))
+additionalFileDirList=($(cat $csvName |  awk -F "," '{print $5}' | awk 'NR>1' | awk 'NF > 0'))
+
+# printf '%s\n' "${userList[@]}"
+# printf '%s\n' "${repoList[@]}"
+# printf '%s\n' "${oriFileLocList[@]}"
+# printf '%s\n' "${websiteFileLocList[@]}"
+# printf '%s\n' "${additionalFileDirList[@]}"
 
 
 #### Get List of Unique Repos
 uniqRepo=($(printf '%s\n' "${repoList[@]}" | sort | uniq))
 # allRepo+=(${websiteRepo})
-# printf '%s\n' "${allRepo[@]}"  #Prints list of all unique repos
+# printf '%s\n' "${uniqRepo[@]}"
+
 
 
 #### Update needed repos
@@ -127,26 +208,20 @@ done
 for i in ${!oriFileLocList[*]}
 do
   oriFile="${githubRepoLoc}/${repoList[i]}/${oriFileLocList[i]}" #original file pathname
-  # echo $oriFile
-  filename="${oriFile##*/}" #file name
-  # echo $filename
   websiteFileLoc="${githubRepoLoc}/${websiteRepo}/${websiteFileLocList[i]}" #website filepath
-  # echo $websiteFileLoc
-  websiteFile="${websiteFileLoc}/${filename}" #website file pathname
-  # echo $websiteFile
-  if [ -f ${websiteFile} ] #if file exists in website repo
-  then
-    if ! cmp ${oriFile} ${websiteFile} >/dev/null 2>&1 #if files are different in source and website repo
-    then
-      echo "Updating ${filename} in website repo"
-      cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
-    fi
-  else
-    echo "Adding ${filename} to website repo"
-    mkdir -p "${websiteFileLoc}" #ensure filepath exists and create if not
-    cp "${oriFile}" "${websiteFileLoc}" #copy source file to website repo
-  fi
+  addFileDirString="${additionalFileDirList[i]}"
+
+  copy_File_Or_Dir "${oriFile}" "${websiteFileLoc}" "${addFileDirString}"
 done
+
+#Run local Hugo to get files in the right place
+cd "$githubRepoLoc/$websiteRepo"
+export RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc #pandoc is installed with Rstudio and the rmarkdown pakcage automaticlaly looks for a $RSTUDIO_PANDOC path variable, make sure the path is availabel to R using this line, you can find the path by running RStudio and running this line `Sys.getenv("RSTUDIO_PANDOC")`
+Rscript -e 'if (!require(blogdown)) install.packages("blogdown")'
+Rscript -e 'tryCatch(blogdown::hugo_version(), error=function(cond) blogdown::install_hugo())'
+Rscript -e 'blogdown::serve_site()' &>/dev/null &
+sleep 30
+kill -SIGINT $!
 
 
 #### Update Website Repository

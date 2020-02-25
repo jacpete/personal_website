@@ -1,0 +1,462 @@
+---
+title: Exploring MoveBank data and the movement characteristics of barnacle geese
+author: Jacob Peterson
+date: February, 12, 2020
+slug: exploring-movebank-barnacle-geese
+subtitle: ''
+summary: An entry into my data science portfolio that showcases exploratory analysis,
+  data cleaning procedures including error checking, and some simple statistical analyses.
+lastmod: '2020-02-05T23:41:25-06:00'
+featured: false
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: false
+draft: false
+categories:
+  - R
+tags:
+  - R
+  - Data Management
+  - Exploratory Analysis
+authors: []
+projects:
+  - barnacleGeeseMoveBank
+params:
+  type: html
+  appendix: false
+output:
+  blogdown::html_page:
+    toc: true
+    fig_caption: true
+---
+
+
+
+<script src="/rmarkdown-libs/kePrint-0.0.1/kePrint.js"></script>
+<div id="TOC">
+<ul>
+<li>
+<a href="#document-overview">Document Overview:</a>
+</li>
+<li>
+<a href="#abstract">Abstract</a>
+</li>
+<li>
+<a href="#dataset-description">Dataset Description:</a>
+</li>
+<li>
+<a href="#graphical-analysis">Graphical Analysis:</a>
+</li>
+<li>
+<a href="#data-quality-checking">Data Quality Checking</a>
+</li>
+<li>
+<a href="#final-data-analysis">Final Data Analysis</a>
+</li>
+<li>
+<a href="#works-cited">Works Cited</a>
+</li>
+</ul>
+</div>
+<div id="document-overview" class="section level1 unnumbered">
+<h1>
+Document Overview:
+</h1>
+<p>
+This document was originally used to create my final project for the ABE 651 (<em>Environmental Informatics</em>) class I took while at Purdue University.
+I am now repurposing it to use as an example in my data science portfolio I am putting together to host on my <a href="https://github.com/jacpete//">Github</a>.
+</p>
+<p>
+The purpose of this class project was meant to demonstrate our ability to find and manage a publicly available dataset, perform exploratory graphical analysis, run a data quality checking sequence, and perform a simple statistical analysis on the data.
+The project was meant to be open ended so that students could use data they had specific interests in and I chose to explore animal movement data from the data repository site <a href="https://www.datarepository.movebank.org/">MoveBank</a>.
+</p>
+<p>
+A repository with the data and code used to create this pdf can be found <a href="https://github.com/jacpete/portfolio_DataExplorationAndCleaning_MovebankData//">here</a>.
+</p>
+</div>
+<div id="abstract" class="section level1 unnumbered">
+<h1>
+Abstract
+</h1>
+<p>
+With this project, I explored the offerings of an animal movement data repository and created a Rmarkdown document that contained the code used to clean, format, and explore the data available at <a href="https://www.datarepository.movebank.org/">MoveBank</a>.
+I chose to use data depicting movements of barnacle geese in Northern Europe and the North Atlantic within three separate sub-populations.
+With this data, I examined the regional differences in displacement between the summer and winter ranges as well as differences in summer home range size using one-way ANOVA’s.
+Using post-hoc Tukey tests, I discovered that there was a significant difference in seasonal displacement between the Barents Sea and Greenland sub-populations.
+However, there was no significant variation between summer home range size in the sub-populations.
+</p>
+<p>
+<br />
+</p>
+</div>
+<div id="dataset-description" class="section level1 unnumbered">
+<h1>
+Dataset Description:
+</h1>
+<p>
+<strong><em>Dataset Source</em></strong>
+</p>
+<p>
+The data was downloaded from <a href="https://www.datarepository.movebank.org/">MoveBank</a> and consists of movement data of 44 barnacle geese (<em>Branta leucopsis</em>) individuals in Northern Europe from April 2006 to June 2011.
+This included data from three specific study regions in Greenland, Svalbard, and Barents Sea <span class="citation">(Cabot 2014, Griffin 2014, Jeugd et al. 2014)</span>.
+In total, there were 52,443 total records spread among 44 individuals.
+This data was originally collected for and used in two other published studies <span class="citation">(Shariatinajafabadi et al. 2014, Kölzsch et al. 2015)</span>.
+However, it is not likely that all the possible questions have been asked using the dataset.
+Open access datasets like these present opportunities to answer new ecological questions with existing datasets.
+</p>
+<p>
+<br />
+</p>
+<p>
+<strong><em>Dataset Format and Metadata</em></strong>
+</p>
+<p>
+This data was downloaded in csv format and includes the following data:
+</p>
+<div class="line-block">
+    <em>Useful data included in all study regions as part of the original datasets:</em>
+</div>
+<ul>
+<li>
+<strong>event-id</strong> unique identifier for each movement event
+</li>
+<li>
+<strong>timestamp</strong> the date and time the event was recorded in UTC
+</li>
+<li>
+<strong>location-long</strong> longitude in decimal degrees (Datum: WGS84)
+</li>
+<li>
+<strong>location-lat</strong> latitude in decimal degrees (Datum: WGS84)
+</li>
+<li>
+<strong>individual-local-identifier</strong> unique identifier for individual
+</li>
+</ul>
+<div class="line-block">
+    <em>Created as part of exploratory analysis using existing variables:</em>
+</div>
+<ul>
+<li>
+<strong>hours</strong> hours between timesteps
+</li>
+<li>
+<strong>dist</strong> distance traveled during a timestep (in meters)
+</li>
+<li>
+<strong>dist_hour</strong> distance traveled divided by the hours between timesteps (m/hr)
+</li>
+<li>
+<strong>month</strong> month data was collected in
+</li>
+<li>
+<strong>year</strong> year data was collected in
+</li>
+<li>
+<strong>monthFloor</strong> month and year combination that the data was collected in
+</li>
+</ul>
+<p>
+<br />
+</p>
+</div>
+<div id="graphical-analysis" class="section level1 unnumbered">
+<h1>
+Graphical Analysis:
+</h1>
+<p>
+<strong><em>Graphical Analysis Methods</em></strong>
+</p>
+<p>
+As not a lot of information was included in the original data set, I created a few new columns for the dataset as noted in the list above.
+This included splitting the data into movement tracts for each individual and calculating time per step and distance moved per step, as well as splitting the data up into different time periods for ease during graphical analysis.
+First, I identified the distribution of individuals across the study regions (Fig. <a href="#fig:Plot-Individuals-Per-Study-Region">1</a>).
+I then mapped the points to see where exactly the birds from the different study regions were located and look for spatial outliers (Fig. <a href="#fig:Plot-Spatial-Map">2</a>). Next I explored the distribution of movement records among individuals and study regions (Fig. <a href="#fig:Plot-Individual-Point-Distribution">3</a>). This would help identify individuals that had a lot less relocations as well as the variation in the number of relocations gathered between study regions.
+I also plotted the distribution of the amount of time between consecutive points for each individual (Fig. <a href="#fig:Plot-Time-Between-Points-Indiv">4</a>). Large gaps in time between successive points would make the data less useful and such gaps should be removed in further analyses.
+I was hoping to get fairly continuous data of year round movement in order to calculate both summer and winter home range sizes and estimate differences in step length during migration and within home ranges.
+To check for this, I used boxplots to plot the standardized distance over time by each month in the entire time series (Fig. <a href="#fig:Plot-Dist-Traveled-Over-Time">5</a>).
+This not only helped identify possible variability at certain times of the year, but also time periods that only had data from certain study areas.
+The patterns identifying the distribution of points across time and study regions were summarized best in the final two graphs that plot the count of points occurring in the years of the study and across individual months (Figs. <a href="#fig:Count-of-points-per-year">6</a> and <a href="#fig:Count-of-points-per-month">7</a> respectively).
+Because there is a noticeable lack of points recorded during the winter months (Fig. <a href="#fig:Count-of-points-per-month">7</a>), I will only be estimating home ranges in the summer breeding months.
+</p>
+<p>
+<br />
+<br />
+</p>
+<div class="figure" style="text-align: center">
+<span id="fig:Plot-Individuals-Per-Study-Region"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Plot-Individuals-Per-Study-Region-1.png" alt="Distribution of individuals among study regions" width="672" />
+<p class="caption">
+Figure 1: Distribution of individuals among study regions
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span id="fig:Plot-Spatial-Map"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Plot-Spatial-Map-1.png" alt="Distribution of movement data across all study regions" width="672" />
+<p class="caption">
+Figure 2: Distribution of movement data across all study regions
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span id="fig:Plot-Individual-Point-Distribution"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Plot-Individual-Point-Distribution-1.png" alt="Distribution of movement relocations among individuals and study regions" width="672" />
+<p class="caption">
+Figure 3: Distribution of movement relocations among individuals and study regions
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span id="fig:Plot-Time-Between-Points-Indiv"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Plot-Time-Between-Points-Indiv-1.png" alt="Distribution of the length of time between successive relocations on bird data by individuals and study regions" width="672" />
+<p class="caption">
+Figure 4: Distribution of the length of time between successive relocations on bird data by individuals and study regions
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span id="fig:Plot-Dist-Traveled-Over-Time"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Plot-Dist-Traveled-Over-Time-1.png" alt="Distribution of distance traveled, standardized by an hour, during each movement across time" width="672" />
+<p class="caption">
+Figure 5: Distribution of distance traveled, standardized by an hour, during each movement across time
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span id="fig:Count-of-points-per-year"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Count-of-points-per-year-1.png" alt="Count of points occurring in the different years of the studies" width="672" />
+<p class="caption">
+Figure 6: Count of points occurring in the different years of the studies
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span id="fig:Count-of-points-per-month"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Count-of-points-per-month-1.png" alt="Count of points occurring in the different months of the year" width="672" />
+<p class="caption">
+Figure 7: Count of points occurring in the different months of the year
+</p>
+</div>
+<div style="page-break-after: always;">
+
+</div>
+</div>
+<div id="data-quality-checking" class="section level1 unnumbered">
+<h1>
+Data Quality Checking
+</h1>
+<p>
+<strong><em>Data Quality Checking Methods</em></strong>
+</p>
+<p>
+After completing the graphical data analysis, I found that the spatial data visually seemed to be consistent with no gross errors or GPS points way outside of the study areas (Fig. <a href="#fig:Plot-Spatial-Map">2</a>). This was likely influenced by the data quality checking standards required for submission to the MoveBank database. Despite this, we ran a nearest neighbor analysis to flag odd points. If a point was found to be greater than 75 km from its nearest point, it was flagged for closer inspection. This check ended up providing a few flagged points (Table <a href="#tab:Draw-Summary-Table">1</a>), but after examining them individually, it was determined that they were just from individuals that made long movements in a timestep and weren’t that close spatially to the other tagged individuals.
+</p>
+<p>
+I also wanted to flag movements that spanned extremely large distances during a timestep. These locations may indicate GPS errors and I should consider their inclusion more closely. These flagged movements could also be an artifact of the GPS collar only logging points seasonally or in a case where there were blocks of missed satellite fixes. For this check I parsed the dataset for movements with a distance traveled greater than 100 km. This actually flagged 737 points, which would be a lot to go through. In order to cut down the number of points, I needed to consider the timestep length during those long movements. Moving 100 km over 1 hour is a lot different than moving 100 km over 24 hours. During the exploratory data analysis, I measured used hours as the unit for timesteps and created a distance per hour column in the dataframe as well. I then ran a similar check to flag movements greater than 100 km per hour which flagged a more reasonable 37 points. However, after doing some background research on barnacle geese, I did find evidence that while flying 100 km per hour is on the upper range of the species abilities, it is not unheard of. With this evidence in mind, I chose not to remove any of the flagged 37 locations.
+</p>
+<p>
+During the graphical analysis, we also found that there was one individual in particular (individual ID 78040) that had a very low number of relocations, especially in comparison to other individuals in the study (Fig. <a href="#fig:Plot-Individual-Point-Distribution">3</a>). This could be indicative of either a failed GPS transmitter, or an individual that suffered from capture myopathy and died quickly. To avoid distorting our dataset with an individual that contributed very little data, all individuals with less than 100 points were removed from the dataset during this data quality check.
+</p>
+<p>
+Most of the inconsistencies identified within the dataset in the exploratory analysis seemed to be related with the temporal continuation within the dataset. The Barents Sea data had the most variation in the spread of hours between consecutive points (Fig. <a href="#fig:Plot-Time-Between-Points-Indiv">4</a>). While the other study regions had an average of 2 hour timesteps, Barents Sea data logged a lot data on different temporal scales. Patterns I noticed while searching through the data included a 5 hour period and a 19 hour period daily and a 3-3-3-15 hour schedule daily. This will limit some analyses that can be done with the Barents Sea data. Despite this, all regions had some large outliers in in times between GPS fixes that need to be flagged and dealt with. For this check, I flagged all points that had greater than 48 hours between the GPS fixes. This check will be useful when deciding which points to remove from the distance per hour check. I expected to get a lot of flags during this check and I will have to look at where these breaks occur and if there is a pattern there. GPS transmitters could be programmed to take less points during certain seasons or it could just be an error with the transmitter in communicating with the satellites. To use this data I will likely have to separate the data into bursts of movements around these long periods of time. After examining the flagged data, I resolved to remove all of the flagged points in this check as non-continuous bursts shouldn’t impact results involving home range and spatial displacement analyses.
+</p>
+<p>
+<br />
+</p>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:Draw-Summary-Table">Table 1: </span>Table summarizing the results of the data quality
+checking
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Quality Check
+</th>
+<th style="text-align:right;">
+# of Individuals Flagged
+</th>
+<th style="text-align:right;">
+# of Relocations Flagged
+</th>
+<th style="text-align:right;">
+# of Relocations Removed
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Spatially Isoloated Points
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Long Distance
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+737
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Long Distance by Hour
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Low Data Individuals
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:right;">
+63
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours Between Steps
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+310
+</td>
+<td style="text-align:right;">
+310
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Totals
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+977
+</td>
+<td style="text-align:right;">
+369
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="final-data-analysis" class="section level1 unnumbered">
+<h1>
+Final Data Analysis
+</h1>
+<p>
+<strong><em>Final Data Analysis Methods</em></strong>
+</p>
+<p>
+For my analysis, I wanted to test for differences in the average displacement between winter and summer (breeding) sites, as well as regional differences in summer home range size among the sub-populations of barnacle geese.
+To calculate displacement distance I created a nearest neighbor matrix using the ‘FNN’ package in R for each individual across all of their relocations and recorded the max distance between any two points.
+I then ran a one-way ANOVA across the three sub-populations and used a post-hoc Tukey test to examine pairwise differences in displacement.
+</p>
+<p>
+For home range analysis, I only focused on the summer breeding season as there was a lack of data during the winter months (Fig. <a href="#fig:Count-of-points-per-month">7</a>).
+In order to focus on relocations of birds residing in their summer range (not still migrating) across all sub-populations, I subset the data to only include relocations occurring in June and July.
+I then used the ‘adehabitatHR’ package in R to calculate the 95% kernel density home range for each individual using their points from the selected time period.
+Similarly to the displacement analysis, I used a one-way ANOVAs using the sub-populations as the grouping factor to examine regional differences in home range size.
+</p>
+<div style="page-break-after: always;">
+
+</div>
+<p>
+<strong><em>Final Data Analysis Results</em></strong>
+</p>
+<p>
+When examining the regional differences between winter and breeding sites using max displacement distance, I found that the only significant regional difference was between the Greenland and Barents Sea populations (p = 0.02; Fig. <a href="#fig:Plot-Displacement-Distance">8</a>).
+Displacement distances ranged from 918 to 3325 km, with the most variation occurring in the Barents Sea subpopulation.
+</p>
+<p>
+When comparing summer home range sizes, I ended up having to remove another individual from the Barents Sea sup-population because it lacked at least 100 points during the summer breeding months.
+The ANOVA found no significant variation between regions (p &gt; 0.05; Fig. <a href="#fig:Plot-Home-Range-Size">9</a>).
+The largest variation in home range size occurred in the Svalbard region, while the least occurred in the Greenland subpopulation.
+The home range size varied across study regions from 1 square m up to 56 square km.
+This variation is likely caused by the difference between individuals that were always on the nest when a GPS location was taken and individuals that did not breed that summer.
+</p>
+<div class="figure" style="text-align: center">
+<span id="fig:Plot-Displacement-Distance"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Plot-Displacement-Distance-1.png" alt="Distribution of maximum displacement distance (km) in barnacle geese between winter and summer ranges across breeding sub-populations" width="672" />
+<p class="caption">
+Figure 8: Distribution of maximum displacement distance (km) in barnacle geese between winter and summer ranges across breeding sub-populations
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span id="fig:Plot-Home-Range-Size"></span>
+<img src="/blog/DS_Portfolio/Environmental_Informatics_Project_files/figure-html/Plot-Home-Range-Size-1.png" alt="Distribution of summer home range size ($km^2$) in barnacle geese across breeding sub-populations" width="672" />
+<p class="caption">
+Figure 9: Distribution of summer home range size (<span class="math inline"><span class="math inline">\(km^2\)</span></span>) in barnacle geese across breeding sub-populations
+</p>
+</div>
+<div style="page-break-after: always;">
+
+</div>
+</div>
+<div id="works-cited" class="section level1 unnumbered">
+<h1>
+Works Cited
+</h1>
+<style>
+#refs {
+  padding-left: 22px ;
+  text-indent: -22px ;
+}
+</style>
+<div id="refs">
+<div id="ref-dataGreenland">
+<p>
+Cabot, D. 2014. Data from: Forecasting spring from afar? Timing of migration and predictability of phenology along different migration routes of an avian herbivore [greenland data]. DOI: <a href="https://doi.org/doi:10.5441/001/1.5d3f0664">doi:10.5441/001/1.5d3f0664</a>. Movebank data repository.
+</p>
+</div>
+<div id="ref-dataSvalbard">
+<p>
+Griffin, L. 2014. Data from: Forecasting spring from afar? Timing of migration and predictability of phenology along different migration routes of an avian herbivore [svalbard data]. DOI: <a href="https://doi.org/doi:10.5441/001/1.5k6b1364">doi:10.5441/001/1.5k6b1364</a>. Movebank data repository.
+</p>
+</div>
+<div id="ref-dataBarentsSea">
+<p>
+Jeugd, H. van der, K. Oosterbeek, B. Ens, J. Shamoun-Baranes, and K. Exo. 2014. Data from: Forecasting spring from afar? Timing of migration and predictability of phenology along different migration routes of an avian herbivore [barents sea data]. DOI: <a href="https://doi.org/doi:10.5441/001/1.ps244r11">doi:10.5441/001/1.ps244r11</a>. Movebank data repository.
+</p>
+</div>
+<div id="ref-Kolzsch2015">
+<p>
+Kölzsch, A., S. Bauer, R. de Boer, L. Griffin, D. Cabot, K. M. Exo, H. P. van der Jeugd, and B. A. Nolet. 2015. Forecasting spring from afar? Timing of migration and predictability of phenology along different migration routes of an avian herbivore. Journal of Animal Ecology 84:272–283. DOI: <a href="https://doi.org/10.1111/1365-2656.12281">10.1111/1365-2656.12281</a>.
+</p>
+</div>
+<div id="ref-Shariatinajafabadi2014">
+<p>
+Shariatinajafabadi, M., T. Wang, A. K. Skidmore, A. G. Toxopeus, A. Kölzsch, B. A. Nolet, K. M. Exo, L. Griffin, J. Stahl, and D. Cabot. 2014. Migratory herbivorous waterfowl track satellite-derived green wave index. PLoS ONE 9:1–11. DOI: <a href="https://doi.org/10.1371/journal.pone.0108331">10.1371/journal.pone.0108331</a>.
+</p>
+</div>
+</div>
+<!-- # Add an copy of the code chunks to the bottom of the file with the chuck headings as comments to help organize it. -->
+</div>

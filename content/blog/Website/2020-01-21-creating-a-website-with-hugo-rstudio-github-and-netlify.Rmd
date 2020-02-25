@@ -12,7 +12,7 @@ tags:
   - GitHub
   - Academic
 subtitle: ''
-summary: 'Learn how I got my website up and running using a combination of Hugo, RStudio, GitHub, and Netlify. This blogpost focuses on how to get a basic one-page website up and running with futher posts within my [website category](/categories/website) detailing the more intensive customizations.'
+summary: 'Learn how I got my website up and running using a combination of Hugo, RStudio, GitHub, and Netlify. This blog post focuses on how to get a basic one-page website up and running with further posts within my <a href="/categories/website">website category</a> detailing the more intensive customizations.'
 authors: []
 lastmod: '2020-01-21T19:26:44-06:00'
 featured: no
@@ -20,7 +20,8 @@ image:
   caption: ''
   focal_point: ''
   preview_only: no
-projects: []
+projects:
+  - website
 draft: false
 output:
   blogdown::html_page:
@@ -140,7 +141,7 @@ Congratulations you now have a local version of your website repository that you
 
 Now that your website is in a local folder on your computer, it is time to finish installing all the other local dependencies that you will need to make editing your website easier.
 
-\  
+\
 
 #### `blogdown` package
 
@@ -155,7 +156,7 @@ This package provides helpful functions and add-ins that will make editing your 
 ![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/blogdownAddins.png)
 <p align="center">blogdown Add-ins</p>
 
-\  
+\
 
 
 #### Hugo
@@ -176,7 +177,7 @@ Then specify which version of Hugo you want to install.
 blogdown::install_hugo(version = "0.60.1")
 ```
 
-\  
+\
 
 
 #### Academic Theme for Hugo
@@ -194,14 +195,14 @@ git submodule update --init --recursive
 
 
 
-\  
-\  
+\
+\
 
 # Customizing the Website
 
 Now you have all the tools you should need to start customizing your own personal website.
-This customization can be as simple filling in your information and rearranging the home page to act your personal online business card, or involve heavy customization of themes and multipage navigation. For the purpose of this blog post, I will only run through the important details to get you a functioning personalized one page website, but check out my [other blog posts](/categories/website/) where I go into detail on how I customized my own site.  
-  
+This customization can be as simple filling in your information and rearranging the home page to act your personal online business card, or involve heavy customization of themes and multipage navigation. For the purpose of this blog post, I will only run through the important details to get you a functioning personalized one page website, but check out my [other blog posts](/categories/website/) where I go into detail on how I customized my own site.
+
 
 ### config.toml
 
@@ -216,7 +217,7 @@ Located at '/config/_default/config.toml, I changed the following settings from 
 * theme = "academic"
   - If you installed with this guide through the academic theme website, this should already be filled in correctly
 * enableGitInfo = true
-  - This enables the last modified date for posts to be filled in from GitHub automatically. 
+  - This enables the last modified date for posts to be filled in from GitHub automatically.
 
 
 
@@ -234,8 +235,8 @@ Located at '/config/_default/params.toml, I changed the following settings from 
 * math = true
   - I foresee myself using LaTex math on some of my pages and decided to enable it as a global option.
 * Comment out edit_page options to prevent visitors from editing pages
-* Contact Details: Fill them out with whatever information you want to include in the contact widget. Here is a snippet of what mine looks like:  
-dsaf  
+* Contact Details: Fill them out with whatever information you want to include in the contact widget. Here is a snippet of what mine looks like:
+dsaf
 ```{md}
 ############################
 ## Contact details
@@ -278,7 +279,7 @@ contact_links = [
   #{icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
   # {icon = "telegram", icon_pack = "fab", name = "Telegram Me", link = "https://telegram.me/@Telegram"},
   ]
-```  
+```
 <ul>
   <ul>
     <li>
@@ -316,13 +317,13 @@ email_form = 0
 </ul>
 
 * main_menu = {align = "r", show_logo = true}
-  - I moved the main menu to the right side of my header for personal aesthetics. 
+  - I moved the main menu to the right side of my header for personal aesthetics.
 
 
 ### Edit Author Biography on the Homepage
-As I am making this a personal website I want the biography on the homepage to display my own information, not the fictional information of HBO's Silicon Valley's Neslon Bighetti. 
+As I am making this a personal website I want the biography on the homepage to display my own information, not the fictional information of HBO's Silicon Valley's Neslon Bighetti.
 ![](/blog/Website/2020-01-21-creating-a-website-with-hugo-rstudio-github-and-netlify_files/authorOriginal.png)
-To do this, edit the '*/content/authors/admin/\_index.md*' file. This is just a markdown file with special options in the YAML portion that the contact widget uses to fill in the widget template. The main text of the document represents the actual biography paragraph. An example of what mine looks like copied below. 
+To do this, edit the '*/content/authors/admin/\_index.md*' file. This is just a markdown file with special options in the YAML portion that the contact widget uses to fill in the widget template. The main text of the document represents the actual biography paragraph. An example of what mine looks like copied below.
 
 
 
@@ -383,7 +384,7 @@ social:
 - icon: github
   icon_pack: fab
   link: https://github.com/jacpete
-  
+
 # Organizational groups that you belong to (for People widget)
 #   Set this to `[]` or comment out if you are not using People widget.
 user_groups:
@@ -394,7 +395,7 @@ user_groups:
 
 My career has given me experience applying a broad range of statistical and spatial methodologies and honed me into expert in R programming and working with GIS.
 Academic research has prepared me  to think critically, learn new skills independently and quickly, manage complex projects, and collaborate within teams to achieve results.
-I enjoy exploring datasets, solving the puzzles that accompany analysis, and transforming raw data into the solutions used to answer important questions.  
+I enjoy exploring datasets, solving the puzzles that accompany analysis, and transforming raw data into the solutions used to answer important questions.
 I am currently looking for a data science position that allows me to solve pragmatic problems while leveraging my skills in data management, GIS, and statistical analysis.
 ```
 
@@ -436,14 +437,14 @@ Find a png icon that you want to use as your sites icon in the browser tab. It s
 
 
 
-\  
-\  
+\
+\
 
 # Conclusion
-After spending some time editing your site and getting all of your information inserted you should have a functioning single page website. Feel free to stop here or continue on customizing and creating new pages and elements to create the perfect website for yourself. 
+After spending some time editing your site and getting all of your information inserted you should have a functioning single page website. Feel free to stop here or continue on customizing and creating new pages and elements to create the perfect website for yourself.
 
-\  
-\  
+\
+\
 
 # Additional Support
 

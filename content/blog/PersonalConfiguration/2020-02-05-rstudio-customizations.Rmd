@@ -150,7 +150,8 @@ packList <- c("lattice","sp","rgdal","rgeos","sf","data.table",
               "spThin","survival","VGAM","raster",
               "tidyverse","tmap","tmaptools","devtools","captioner",
               "roxygen2","tidyverse","FNN","rmarkdown","blogdown","bookdown",
-              "pagedown", "miniUI")
+              "pagedown", "miniUI", "adehabitatHR", "adehabitatLT", 
+              "knitr", "kableExtra")
 
 install.packages(packList)
 
