@@ -23,11 +23,12 @@ subtitle = ""
 
   [[content.filter_button]]
     name = "All"
-    tag = "*"
+    project_tag = "*"
+    #*
 
   [[content.filter_button]]
-    name = "Data Science Portfolio"
-    tag = "Data Science Portfolio"
+    name = "Data Science Portfolio Test"
+    project_tag = "Data Science Portfolio Test"
 
   # [[content.filter_button]]
   #   name = "Other"
@@ -42,7 +43,7 @@ subtitle = ""
   #   2 = Compact
   #   3 = Card
   #   5 = Showcase
-  view = 3
+  view = 2
 
   # For Showcase view, flip alternate rows?
   flip_alt_rows = false
