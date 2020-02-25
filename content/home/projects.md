@@ -27,8 +27,8 @@ subtitle = ""
     #*
 
   [[content.filter_button]]
-    name = "Data Science Portfolio Test"
-    project_tag = "Data Science Portfolio Test"
+    name = "Data Science Portfolio"
+    project_tag = "Data Science Portfolio"
 
   # [[content.filter_button]]
   #   name = "Other"
