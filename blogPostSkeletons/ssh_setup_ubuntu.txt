@@ -1,0 +1,20 @@
+#firewall gui for pop-os
+sudo apt install gufw
+
+#ssh server
+sudo apt install openssh-server
+
+
+#config port
+sudo nano /etc/ssh/sshd_config
+#set port to something other than the default (22)
+
+#open port in firewall application
+
+#reset ssh
+sudo restart ssh
+#If you get the error, "Unable to connect to Upstart", restart ssh with the following:
+sudo systemctl restart ssh
+
+#install sshfs
+sudo apt install sshfs
