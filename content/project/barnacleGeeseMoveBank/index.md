@@ -4,7 +4,9 @@
 title: "MoveBank Exploratory Data Analysis"
 summary: " "
 authors: []
-tags:
+#tags:
+#  - Data Science Portfolio
+project_tags:
   - Data Science Portfolio
 categories: []
 date: 2020-02-24T14:26:37-05:00

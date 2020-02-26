@@ -1,6 +1,6 @@
 +++
 # A Projects section created with the Portfolio widget.
-widget = "portfolio"  # See https://sourcethemes.com/academic/docs/page-builder/
+widget = "portfolio_projects"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 15  # Order that this section will appear.
@@ -14,7 +14,7 @@ subtitle = ""
 
   # Filter toolbar (optional).
   # Add or remove as many filters (`[[content.filter_button]]` instances) as you like.
-  # To show all items, set `tag` to "*".
+  # To show all items, set `tag` to "\*".
   # To filter by a specific tag, set `tag` to an existing tag name.
   # To remove toolbar, delete/comment all instances of `[[content.filter_button]]` below.
 
@@ -23,11 +23,12 @@ subtitle = ""
 
   [[content.filter_button]]
     name = "All"
-    tag = "*"
+    project_tag = "*"
+    #* 
 
   [[content.filter_button]]
     name = "Data Science Portfolio"
-    tag = "Data Science Portfolio"
+    project_tag = "Data Science Portfolio"
 
   # [[content.filter_button]]
   #   name = "Other"
