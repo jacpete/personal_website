@@ -107,6 +107,7 @@ to
 ## remove skills
 
 ## change color theme to dark and update primary color
+* also go through custom.scss file and make note of all the extra classes I had to change manually
 
 ## Create library page
 * create library folder in content
@@ -129,6 +130,8 @@ to
     - replace type with tags
 
 
+## Create custom project widget to work with widget tags
+* See skeleton post folder
 
 
 
