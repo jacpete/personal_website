@@ -127,7 +127,8 @@ deb-src https://qgis.org/ubuntu bionic main</code></pre>
 <p>Install the key for the QGIS source</p>
 <pre class="bash"><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 51F523511C7028C3</code></pre>
 <p>Install QGIS and the libgdal dependency</p>
-<pre class="bash"><code>sudo apt update
+<pre class="bash"><code>sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt update
 sudo apt install qgis qgis-plugin-grass libgdal-dev</code></pre>
 <p>To knit to pdf with Rmarkdown you will need the following:</p>
 <pre class="bash"><code>sudo apt install texlive texlive-latex-extra lmodern</code></pre>

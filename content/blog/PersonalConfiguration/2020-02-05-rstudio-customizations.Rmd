@@ -129,6 +129,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 51F523511C7028C3
 
 Install QGIS and the libgdal dependency
 ```{bash}
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 sudo apt update
 sudo apt install qgis qgis-plugin-grass libgdal-dev
 ```
