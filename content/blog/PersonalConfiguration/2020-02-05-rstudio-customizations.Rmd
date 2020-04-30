@@ -142,7 +142,7 @@ sudo apt install texlive texlive-latex-extra lmodern
 
 ## Install the R packages
 Install my running package list for R
-```{r}
+```{r, include = FALSE}
 
 packList <- c("lattice","codetools","sp","rgdal","rgeos","sf","data.table",
               "plyr","AICcmodavg","bbmle","devtools",
@@ -155,7 +155,7 @@ packList <- c("lattice","codetools","sp","rgdal","rgeos","sf","data.table",
               "pagedown", "miniUI", "adehabitatHR", "adehabitatLT",
               "knitr", "kableExtra", "here")
 
-install.packages(packList)
+install.packages(packList, Ncpus=6)
 
 
 #Personal Packages
