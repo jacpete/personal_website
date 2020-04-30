@@ -143,11 +143,11 @@ sudo apt install texlive texlive-latex-extra lmodern
 Install my running package list for R
 ```{r}
 
-packList <- c("lattice","sp","rgdal","rgeos","sf","data.table",
+packList <- c("lattice","codetools","sp","rgdal","rgeos","sf","data.table",
               "plyr","AICcmodavg","bbmle","devtools",
               "dismo","FactoMineR","fasterize",
               "ggplotify","ggspatial","gtable","gridExtra",
-              "maptools","rJava","SDMTools","shiny",
+              "maptools","rJava","shiny","terra",
               "spThin","survival","VGAM","raster",
               "tidyverse","tmap","tmaptools","devtools","captioner",
               "roxygen2","tidyverse","FNN","rmarkdown","blogdown","bookdown",
