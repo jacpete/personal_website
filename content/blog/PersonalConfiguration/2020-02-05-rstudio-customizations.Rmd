@@ -120,6 +120,7 @@ Add following to /etc/apt/sources.list
 ```{bash}
 deb https://qgis.org/ubuntugis bionic main
 deb-src https://qgis.org/ubuntugis bionic main
+deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/
 ```
 
 Install the key for the QGIS source
