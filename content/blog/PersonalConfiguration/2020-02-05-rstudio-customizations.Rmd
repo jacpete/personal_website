@@ -118,8 +118,8 @@ Or you could also install QGIS which installs a lot of the dependencies as well
 QGIS Install Instructions at: https://www.qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu
 Add following to /etc/apt/sources.list
 ```{bash}
-deb     https://qgis.org/ubuntu bionic main
-deb-src https://qgis.org/ubuntu bionic main
+deb https://qgis.org/ubuntugis bionic main
+deb-src https://qgis.org/ubuntugis bionic main
 ```
 
 Install the key for the QGIS source
