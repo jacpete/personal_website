@@ -18,7 +18,7 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-draft: true
+draft: false
 output:
   blogdown::html_page:
     toc: yes
@@ -153,7 +153,8 @@ packList <- c("lattice","codetools","sp","rgdal","rgeos","sf","data.table",
               "tidyverse","tmap","tmaptools","devtools","captioner",
               "roxygen2","tidyverse","FNN","rmarkdown","blogdown","bookdown",
               "pagedown", "miniUI", "adehabitatHR", "adehabitatLT",
-              "knitr", "kableExtra", "here")
+              "knitr", "kableExtra", "here", "formatR", "psych",
+              "pscl", "epiDisplay")
 
 install.packages(packList, Ncpus=6)
 
